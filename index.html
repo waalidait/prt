@@ -1,0 +1,288 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio — Intro Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="about.css">
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <header class="navbar-header">
+    <nav class="nav-container">
+        <a href="#home" class="nav-item active">HOME</a>
+        <a href="#about" class="nav-item">ABOUT ME</a>
+        <a href="#works" class="nav-item">WORKS</a>
+        <a href="#profile" class="nav-item">PROFILE</a>
+        <a href="#contact" class="nav-item">CONTACT</a>
+    </nav>
+</header>
+    <!-- Intro Loader Screen -->
+    <div class="intro-loader" id="introLoader">
+        <div class="intro-ball" id="introBall">
+            <span class="ball-text">KJ</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <section class="hero">
+            
+           <div class="hero-text" id="heroText">
+            <canvas id="sparkleCanvas"></canvas>
+            <span class="bg-line line-left">MY NAME IS</span>
+            <span class="bg-line line-right"><span class="flicker-letter">K</span>HADIJA JAMAL</span>
+           </div>
+
+  
+            <!-- Hero Image Wrapper -->
+            <div class="hero-image-wrapper" id="heroImageWrapper">
+
+                <div class="hover-guide" id="hoverGuide">
+                   <span class="guide-text">Hover here</span>
+                   <svg class="guide-arrow" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2.5">
+                       <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                   </svg>
+              </div>
+                <div class="reveal-container" id="revealContainer">
+
+                    <img class="img-base" id="imgBase" src="img/chatgpt.png" alt="Khadija Jamal">
+
+                    <div class="reveal-layer" id="revealLayer">
+                        <img class="img-reveal" id="imgReveal" src="img/chatgpt.png" alt="Reveal Image">
+                    </div>
+
+                    <div class="cursor-dot" id="cursorDot"></div>
+
+                    <svg width="0" height="0" style="position:absolute;">
+                        <defs>
+                            <mask id="organic-mask" maskContentUnits="objectBoundingBox" maskUnits="objectBoundingBox">
+                                <path id="maskPath" d="" fill="#fff"></path>
+                            </mask>
+                        </defs>
+                    </svg>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ربط ملف الـ CSS المستقل فـ الـ head -->
+<!-- <link rel="stylesheet" href="about.css"> -->
+
+ <section class="about-section" id="about">
+    
+    <!-- Big Title with Flicker Animation -->
+      <h1 class="about-big-title">
+    <span class="about-flicker-letter">A</span>
+    <span class="about-flicker-letter">B</span>
+    <span class="about-flicker-letter">O</span>
+    <span class="about-flicker-letter">U</span>
+    <span class="about-flicker-letter">T</span>
+    <span class="space">&nbsp;</span>
+    <span class="about-flicker-letter">M</span>
+    <span class="about-flicker-letter">E</span>
+</h1>
+
+    <div class="about-container">
+        
+        <!-- الجهة اليسرية (الصورة والمعلومات الشائعة) -->
+         <div class="about-left">
+    <!-- Hyyadna sub-title w main-title -->
+
+    <div class="about-image-wrapper">
+    <!-- الصورة الأولى (اللي غتبان فـ الأول وستطفا) -->
+    <img src="img/chatgpt.png" alt="Khadija Jamal" class="about-img img-primary">
+    
+    <!-- الصورة الثانية (اللي غتشعل فـ اللخر) -->
+    <img src="img/animekahdija 1 (1).png" alt="Khadija Jamal" class="about-img img-secondary">
+</div>
+
+    <h1 class="person-name">KHADIJA JAMAL</h1>
+    <p class="person-title"><em>UI/UX Designer</em> based in <strong>MOROCCO</strong></p>
+
+    <a href="cv.pdf" download class="download-cv-btn">
+        Download CV 
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+        </svg>
+    </a>
+</div>
+
+        <!-- الجهة اليمينية (الكروت والستاتس) -->
+        <div class="about-right">
+            
+            <!-- شبكة معلومات التواصل -->
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <span>+212 710815812</span>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <span>25 yrs</span>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <span>jamalkhadija707@gmail.com</span>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <span>United kingdom, London</span>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <!-- الإحصائيات مع النصوص -->
+          <div class="stats-grid">
+    <div class="stat-box">
+        <!-- خليه يصفار فـ الأول -->
+        <div class="stat-number" data-target="1">0+</div>
+        <div class="stat-label">Years<br>of Learning...</div>
+        <p class="stat-desc">
+            Passionate about UI/UX design, I create modern, intuitive, and user-centered digital experiences.
+        </p>
+    </div>
+
+    <div class="stat-box">
+        <!-- خليه يصفار فـ الأول -->
+        <div class="stat-number" data-target="8">0+</div>
+        <div class="stat-label">Projects<br>Completed...</div>
+        <p class="stat-desc">
+            Through academic, internship, and personal projects, I have developed skills in UI/UX design.
+        </p>
+    </div>
+</div>
+            <!-- الكارت الموف (Quote Box) -->
+            <div class="quote-card">
+                <span class="quote-mark">“</span>
+                <p class="quote-text">
+                    "I believe great design combines simplicity, creativity, and usability to create memorable digital experiences."
+                </p>
+            </div>
+
+        </div>
+
+    </div> 
+</section>
+
+
+   <section class="projects-section">
+    <div class="projects-header">
+        <h2 class="projects-title">
+            <span class="word">
+                <span class="char-wrapper"><span class="reveal-char">F</span></span>
+                <span class="char-wrapper"><span class="reveal-char">e</span></span>
+                <span class="char-wrapper"><span class="reveal-char">a</span></span>
+                <span class="char-wrapper"><span class="reveal-char">t</span></span>
+                <span class="char-wrapper"><span class="reveal-char">u</span></span>
+                <span class="char-wrapper"><span class="reveal-char">r</span></span>
+                <span class="char-wrapper"><span class="reveal-char">e</span></span>
+                <span class="char-wrapper"><span class="reveal-char">d</span></span>
+            </span>
+            <span class="word">
+                <span class="char-wrapper"><span class="reveal-char">W</span></span>
+                <span class="char-wrapper"><span class="reveal-char">o</span></span>
+                <span class="char-wrapper"><span class="reveal-char">r</span></span>
+                <span class="char-wrapper"><span class="reveal-char">k</span></span>
+                <span class="char-wrapper"><span class="reveal-char">s</span></span>
+            </span>
+        </h2>
+    </div>
+
+    <div class="cards-stack-wrapper">
+        <div class="project-card card-1">
+            <div class="card-info">
+                <span class="card-num">01</span>
+                <h3>Game World Design</h3>
+                <p>Interactive game environment concept with dynamic character animations and fluid motion graphics.</p>
+                <div class="card-tags">
+                    <span>Game Design</span>
+                    <span>2D Animation</span>
+                </div>
+            </div>
+            <div class="card-preview">
+                <img src="img/Video Games Animation GIF by FOU.gif" alt="Game Design Animation" class="card-gif">
+            </div>
+        </div>
+
+        <div class="project-card card-2 multi-grid-card">
+            <div class="card-info">
+                <span class="card-num">02</span>
+                <h3>Neoclassical Aesthetics</h3>
+                <p>Sophisticated visual identity combining classical art elements, elegant typography, and modern layout balance.</p>
+                <div class="card-tags">
+                    <span>Branding</span>
+                    <span>Neoclassical Style</span>
+                </div>
+            </div>
+            <div class="card-preview-grid">
+                <div class="grid-item"><img src="img/téléchargement (1).jpeg" alt="Neoclassical Preview 1"></div>
+                <div class="grid-item"><img src="img/téléchargement (3).jpeg" alt="Neoclassical Preview 2"></div>
+                <div class="grid-item"><img src="img/téléchargement (4).jpeg" alt="Neoclassical Preview 3"></div>
+                <div class="grid-item"><img src="img/DON’T BE CTRL V⚪️🔴.jpeg" alt="Neoclassical Preview 4"></div>
+            </div>
+        </div>
+
+        <div class="project-card card-3 multi-grid-card">
+            <div class="card-info">
+                <span class="card-num">03</span>
+                <h3>Pixel Art Retro Game</h3>
+                <p>Nostalgic 8-bit game design assets featuring custom sprites, arcade environments, and retro pixel typography.</p>
+                <div class="card-tags">
+                    <span>Pixel Art</span>
+                    <span>Retro Gaming</span>
+                </div>
+            </div>
+            <div class="card-preview-grid">
+                <div class="grid-item"><img src="img/🍕👾 RETRO PIXEL SNACK ATTACK.jpeg" alt="Pixel Art Preview 1"></div>
+                <div class="grid-item"><img src="img/Beliel _ Runner arcade.jpeg" alt="Pixel Art Preview 2"></div>
+                <div class="grid-item"><img src="img/téléchargement (5).jpeg" alt="Pixel Art Preview 3"></div>
+                <div class="grid-item"><img src="img/téléchargement (6).jpeg" alt="Pixel Art Preview 4"></div>
+            </div>
+        </div>
+
+        <div class="project-card card-4 multi-grid-card">
+            <div class="card-info">
+                <span class="card-num">04</span>
+                <h3>Editorial Typography & Layout</h3>
+                <p>Bold editorial designs focusing on high-contrast typography, magazine spreads, and poster art compositions.</p>
+                <div class="card-tags">
+                    <span>Editorial</span>
+                    <span>Typography</span>
+                </div>
+            </div>
+            <div class="card-preview-grid">
+                <div class="grid-item"><img src="img/Keep Moving — Bold Black & White Typography Poster.jpeg" alt="Editorial Preview 1"></div>
+                <div class="grid-item"><img src="img/téléchargement (7).jpeg" alt="Editorial Preview 2"></div>
+                <div class="grid-item"><img src="img/téléchargement (8).jpeg" alt="Editorial Preview 3"></div>
+                <div class="grid-item"><img src="img/téléchargement (2).jpeg" alt="Editorial Preview 4"></div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="aboutme.js"></script>
+    <script src="main.js"></script>
+    <script src="animation/works.js"></script>
+</body>
+</html>

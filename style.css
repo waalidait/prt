@@ -1,0 +1,435 @@
+ @import url("about-me.css");
+ @import url("animation/works.css");
+ 
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    /* التغيير كايتم بـ انسيابية فـ 0.8 ثانية */
+    transition: background-color 0.8s ease, color 0.8s ease;
+    margin: 0;
+    padding: 0;
+}
+
+/* الكلاس اللي كترجع الصفحة بيضاء */
+body.light-theme {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+}
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent: #d7ff3f;
+}
+
+body {
+    background-color: #cbcbd8;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ================= Intro Loader Screen ================= */
+.intro-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f0f11;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.intro-ball {
+    width: 50px;
+    height: 50px;
+    background-color: #FF1493;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+}
+
+.ball-text {
+    color: #000000;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+/* ================= Main Content & Hero Section ================= */
+.main-content {
+    opacity: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Text Positioned Absolutely on the Left */
+.hero-text {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-text .title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #0f0f11;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.hero-text .title .char {
+    display: inline-block;
+    will-change: opacity, filter;
+}
+
+.hero-text .subtitle {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: #2b2b30;
+    font-style: italic;
+    font-weight: 600;
+    opacity: 0;
+}
+
+/* Hero Image Wrapper (تبقى فبلاصتها الأصلية بالضبط) */
+.hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform, opacity, clip-path;
+}
+
+/* ================= Mask Hover Reveal Container ================= */
+.reveal-container {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    background: transparent;
+    cursor: none;
+    isolation: isolate;
+}
+
+.reveal-container img {
+    position: relative;
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+.img-base {
+    z-index: 1;
+}
+
+/* Organic SVG Mask Layer */
+.reveal-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    -webkit-mask-image: url(#organic-mask);
+    mask-image: url(#organic-mask);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    will-change: mask-image;
+}
+
+.reveal-layer img.img-reveal {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Custom Cursor Dot */
+.cursor-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: var(--accent);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.15s ease;
+}
+
+.reveal-container.is-hovering .cursor-dot {
+    opacity: 1;
+}
+
+/* ================= Text Reveal & Flicker Fix ================= */
+/* الخلفية كحلة */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+ /* Container مأنسر 100% وسط الشاشة */
+ /* Container center 100% f-l-ecran */
+ /* Container مأنتر فـ الوسط */
+.hero-text {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 1;
+    text-align: center;
+    width: 100vw;
+    pointer-events: none;
+}
+
+/* التنسيق ديال 3 السطور كبار ومقادين */
+ /* Container center madhe 100% */
+.hero-text {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 1;
+    text-align: center;
+    width: 100vw;
+    pointer-events: none;
+}
+
+/* 2 Lines sathi motha ani neat font styling */
+ /* Container مأنتر فـ الوسط */
+ 
+ /* /* Container center w-m-khafez l-lisser */
+ /* Container مأنسر فـ اليسار */
+ /* Container f-l-lisser b-massafe mnasba */
+ /* Container f-l-lisser */
+.hero-text {
+    position: absolute !important;
+    top: 50% !important;
+    left: 4% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    z-index: 1;
+    width: auto !important;
+    pointer-events: none;
+}
+
+/* Sstor l-lowel: MY NAME IS (kbiir w ghliid) */
+.hero-text .bg-line {
+    font-family: 'Anton', 'Impact', sans-serif !important;
+    display: block !important;
+    opacity: 1 !important;
+    font-size: 10vw !important; /* Rj3na l-hagm kbiir bzaf */
+    line-height: 0.9 !important;
+    color: #f30b0b;
+    text-transform: uppercase;
+    letter-spacing: -1px !important;
+    white-space: nowrap;
+    transform: scaleY(1.15) !important;
+    transform-origin: left center;
+}
+
+/* Sstor l-thani: KHADIJA JAMAL (m-ba33ed f-l-ikhtilaf w m-kaHzz l-lisser) */
+.hero-text .line-right {
+    margin-top: 2vw !important; /* Hada huwa li kyt-farkha 3la l-line l-faw9ani باش ما y-tla9awsh */
+    padding-left: 3vw !important; /* Dkka khfifa bzaf باش t-b9a m-kaHzza l-lisser w ma t-ghattisch l-image */
+}
+
+/* Harf K li kyt-flickera */
+.flicker-letter {
+    display: inline-block;
+    will-change: opacity, filter;
+}
+/* Style dyal DESIGNER: Ketba kehla w l-border b-l-byed */
+.hero-text .outlined-text {
+    color: #000000 !important; /* Ketba m-dkhla kahl */
+    -webkit-text-stroke: 2px #ffffff !important; /* Border/Stroke b-l-byed */
+    text-shadow: 0 0 1px #ffffff;
+}
+ /* Canvas ديال الشرار */
+#sparkleCanvas {
+    position: absolute !important;
+    top: -50% !important;
+    left: -20% !important;
+    width: 140% !important;
+    height: 200% !important;
+    pointer-events: none !important;
+    z-index: -1 !important; /* كيجي ورا الكلمة مباشرة */
+}
+
+/* Container خاصو يكون relative */
+.hero-image-wrapper {
+    position: relative !important;
+}
+
+/* التموضع الفوق على اليمين (Top Right) */
+.hover-guide {
+    position: absolute;
+    top: 15px;            /* العلو من الفوق */
+    right: 20px;          /* التموضع على اليمين */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    z-index: 50;          /* كيجيو فوق كلشي */
+    pointer-events: none;
+    opacity: 0;           /* مخبي فـ الأول */
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.hover-guide .guide-text {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    background: rgba(0, 0, 0, 0.65);
+    padding: 3px 8px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    white-space: nowrap;
+}
+
+.hover-guide .guide-arrow {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+}
+
+/* فاش كتفعل الكلاس show */
+.hover-guide.show {
+    opacity: 1;
+    visibility: visible;
+    animation: floatArrow 1.8s ease-in-out infinite;
+}
+
+@keyframes floatArrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* كيختفي تلقائياً غير يتحط الماوس على الصورة */
+.hero-image-wrapper:hover .hover-guide {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Container الكلي ديال الـ Header باش يجي فـ الوسط الفوق */
+.navbar-header {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* تمركُز أفقياً فـ الوسط */
+    align-items: center;
+    position: fixed;        /* ثابت الفوق فاش تسكرولي */
+    top: 20px;
+    left: 0;
+    z-index: 100;
+}
+
+/* الإطار الخارجي (Pill Bar) */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+/* الأزرار لداخل */
+.nav-item {
+    color: #ffffff;
+    text-decoration: none;
+    font-family: monospace, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    white-space: nowrap; /* باش النص ما ينزلش للسطر */
+    transition: all 0.3s ease;
+}
+
+/* العنصر المفعل فقط (HOME) */
+.nav-item.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Hover عند إمرار الماوس على الأزرار الأخرى */
+.nav-item:hover:not(.active) {
+    color: #ffd700;
+    background: rgba(255, 255, 255, 0.1);
+}
+.line-right {
+    display: inline-block;
+    padding-left: 20px; /* Awla margin-left: 20px bash t-df3 l-ketba l-yemin chwiya */
+}
+/* الشكليات الأولية لـ flicker-letter قبل الأنيماسيون */
+.flicker-letter {
+    display: inline-block;
+    color: inherit; /* كتاخد نفس لون الجملة */
+    opacity: 1;     /* باينة وما مخبياش */
+}
+
+/* الأنيماسيون كتشعل فاش يتزاد الكلاس active */
+.active .flicker-letter,
+.about-section.light-theme.active .flicker-letter {
+    animation: lightBulbFlicker 1.8s forwards !important;
+}

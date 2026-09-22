@@ -1,0 +1,454 @@
+ /* ==========================================
+   1. ABOUT SECTION - MAIN BASE (PURE BLACK)
+========================================== */
+.about-section {
+    position: relative;
+    padding: 80px 8%;
+    min-height: 100vh;
+    background-color: #000000 !important;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+/* ==========================================
+   2. CIRCULAR REVEAL LAYER (WHITE BACKGROUND)
+========================================== */
+.about-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #ffffff;
+    z-index: 1;
+    clip-path: circle(0% at 50% 50%);
+    transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.about-section.light-theme::before {
+    clip-path: circle(150% at 50% 50%);
+}
+
+.about-section.light-theme .about-container {
+    color: #111111;
+}
+
+.about-section.light-theme .person-title,
+.about-section.light-theme .stat-desc,
+.about-section.light-theme .info-item span {
+    color: #222222 !important;
+}
+
+/* ==========================================
+   3. BIG TITLE & LETTERS INITIAL STATE
+========================================== */
+.about-big-title {
+    font-size: 6.5rem;
+    font-weight: 900;
+    text-align: left;
+    letter-spacing: -2px; /* L-horof mtlassqin */
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* L-horof tafiyn 100% f-l-awwal */
+.about-section .about-flicker-letter {
+    display: inline-block;
+    opacity: 0;
+    color: transparent;
+    text-shadow: none;
+}
+
+/* Keyframes Light - Pink Glow Effect (#FF1493) */
+@keyframes aboutLightBulbFlicker {
+    0% {
+        opacity: 0;
+        color: transparent;
+        text-shadow: none;
+    }
+    20% {
+        opacity: 0.9;
+        color: #FF1493;
+        text-shadow: 0 0 12px rgba(255, 20, 147, 0.8),
+                     0 0 25px rgba(255, 105, 180, 0.6);
+    }
+    35% {
+        opacity: 0.1; /* kytfa */
+        color: transparent;
+        text-shadow: none;
+    }
+    50% {
+        opacity: 1; /* kyrj3 ysh3l */
+        color: #FF1493;
+        text-shadow: 0 0 15px rgba(255, 20, 147, 0.9);
+    }
+    65% {
+        opacity: 0.2; /* kytfa */
+        color: transparent;
+        text-shadow: none;
+    }
+    80%, 100% {
+        opacity: 1; /* kysht sh3l ghozi banati */
+        color: #FF1493;
+        text-shadow: 0 0 12px rgba(255, 20, 147, 0.9),
+                     0 0 25px rgba(255, 105, 180, 0.7),
+                     0 0 35px rgba(255, 192, 203, 0.5);
+    }
+}
+
+/* ==========================================
+   4. LAYOUT & CONTAINERS
+========================================== */
+.about-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: color 0.8s ease;
+}
+
+.about-left {
+    flex: 1;
+    max-width: 400px;
+}
+
+.about-right {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================
+   5. IMAGE WRAPPER (NO CROP / FULL VISIBILITY)
+========================================== */
+.about-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: auto; /* Height auto bash ma tqta3sh tswira */
+    margin: 0 auto 25px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Tswira tban kamla b-dabbawtiha */
+    border-radius: 20px;
+}
+
+/* ==========================================
+   6. DETAILS & CARDS
+========================================== */
+.person-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, #a855f7, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+.person-title { 
+    text-align: center; 
+    font-size: 0.9rem; 
+}
+
+.download-cv-btn { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px; 
+    color: currentColor; 
+    font-weight: bold; 
+    text-decoration: none;
+}
+
+.info-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.divider { 
+    border: 0; 
+    border-top: 1px solid #ccc; 
+    margin: 10px 0; 
+}
+
+.stats-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+}
+
+.stat-number { 
+    font-size: 2rem; 
+    font-weight: 900; 
+    color: #b000ff; 
+}
+
+.quote-card { 
+    background: #be63f3; 
+    padding: 20px; 
+    border-radius: 8px; 
+    color: #fff; 
+    font-style: italic; 
+}
+
+/* ==========================================
+   SCROLL REVEAL ANIMATIONS (ABOUT SECTION)
+========================================== */
+
+/* الحالة البدائية (قبل ما توصل بالسكرول) */
+.about-left,
+.info-item,
+.stat-box,
+.quote-card {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* الجهة اليسرية كيدخل من اليسار */
+.about-left {
+    transform: translateX(-50px);
+}
+
+/* الجهة اليمينية (الكروت) كيدخلو من التحت/اليمين */
+.info-item {
+    transform: translateY(20px);
+}
+
+.stat-box {
+    transform: translateY(30px);
+}
+
+.quote-card {
+    transform: translateY(30px) scale(0.95);
+}
+
+/* ==========================================
+   ACTIVE STATE (فاش كتوصل بالسكرول)
+========================================== */
+.about-section.reveal-active .about-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-section.reveal-active .info-item,
+.about-section.reveal-active .stat-box,
+.about-section.reveal-active .quote-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Delay تدرجي فـ الدخول باش ما يدخلوش كاملين دقة واحدة */
+.about-section.reveal-active .info-item:nth-child(1) { transition-delay: 0.2s; }
+.about-section.reveal-active .info-item:nth-child(2) { transition-delay: 0.3s; }
+.about-section.reveal-active .info-item:nth-child(3) { transition-delay: 0.4s; }
+.about-section.reveal-active .info-item:nth-child(4) { transition-delay: 0.5s; }
+
+.about-section.reveal-active .stat-box:nth-child(1) { transition-delay: 0.6s; }
+.about-section.reveal-active .stat-box:nth-child(2) { transition-delay: 0.7s; }
+
+.about-section.reveal-active .quote-card { transition-delay: 0.8s; }
+
+/* ==========================================
+   BIGGER IMAGE CONTAINER
+========================================== */
+.about-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 25px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Bash l-glitch ma-y-khrojsh blla l-box */
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important;
+    border-radius: 20px;
+}
+
+.img-secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* ==========================================
+   TV SIGNAL GLITCH (NO SIGNAL / BAD WEATHER)
+========================================== */
+
+/* Tswira 1: Kt-bqa nqya -> Kt-bda t-khrbeq fhal signal dyal TV -> Kt-gheb */
+@keyframes tvSignalGlitchOne {
+    0%, 35% {
+        opacity: 1;
+        transform: translate(0, 0);
+        clip-path: inset(0 0 0 0);
+        filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
+    }
+    
+    /* Start dyal Glitch / Tkharbeq f-l-ecran */
+    37% {
+        transform: translate(-5px, 2px);
+        clip-path: inset(10% 0 80% 0);
+        filter: opacity(0.8) hue-rotate(90deg);
+    }
+    39% {
+        transform: translate(5px, -3px);
+        clip-path: inset(60% 0 10% 0);
+    }
+    41% {
+        transform: translate(-8px, -1px);
+        clip-path: inset(30% 0 50% 0);
+        opacity: 0.4;
+    }
+    43% {
+        transform: translate(8px, 4px);
+        clip-path: inset(80% 0 5% 0);
+        filter: drop-shadow(-5px 0 red);
+    }
+    45% {
+        transform: translate(-3px, -5px);
+        clip-path: inset(0 0 90% 0);
+        opacity: 0.2;
+    }
+    
+    /* Mcha l-signal nihaiyan */
+    47%, 90% {
+        opacity: 0;
+        transform: translate(0, 0);
+        clip-path: inset(0 0 0 0);
+        filter: none;
+    }
+
+    /* Mni kt-rje3 f-loop */
+    95%, 100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(255, 20, 147, 0.6));
+    }
+}
+
+/* Tswira 2: Kt-sh3l b-glitch f-l-awwal bhal ila dakhla f-signal dyal TV -> Kt-t9ad */
+@keyframes tvSignalGlitchTwo {
+    0%, 46% {
+        opacity: 0;
+        transform: translate(0, 0);
+        clip-path: inset(0 0 0 0);
+        filter: none;
+    }
+
+    /* Tswira 2 kt-dkhol b-tkharbiq dyal signal */
+    47% {
+        opacity: 0.5;
+        transform: translate(6px, -2px);
+        clip-path: inset(40% 0 40% 0);
+        filter: drop-shadow(5px 0 cyan);
+    }
+    49% {
+        opacity: 0.8;
+        transform: translate(-6px, 3px);
+        clip-path: inset(15% 0 70% 0);
+    }
+    51% {
+        opacity: 0.3;
+        transform: translate(4px, -4px);
+        clip-path: inset(75% 0 10% 0);
+    }
+    
+    /* Kt-stabilisa w kt-bqa nqya waqfa */
+    53%, 85% {
+        opacity: 1;
+        transform: translate(0, 0);
+        clip-path: inset(0 0 0 0);
+        filter: drop-shadow(0 0 12px rgba(255, 20, 147, 0.8));
+    }
+
+    /* Glitch fash kt-bghi t-mshi bash t-rje3 1 */
+    87% {
+        transform: translate(-5px, 2px);
+        clip-path: inset(20% 0 60% 0);
+        opacity: 0.6;
+    }
+    89% {
+        transform: translate(5px, -3px);
+        clip-path: inset(50% 0 20% 0);
+        opacity: 0.2;
+    }
+
+    91%, 100% {
+        opacity: 0;
+        transform: translate(0, 0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* Application dyal l-animation (6 Seconds Cycle) */
+.about-section.reveal-active .img-primary {
+    animation: tvSignalGlitchOne 6s ease-in-out infinite;
+}
+
+.about-section.reveal-active .img-secondary {
+    animation: tvSignalGlitchTwo 6s ease-in-out infinite;
+}
+
+/* ==========================================
+   PINK (#FF1493) STYLING FOR ABOUT-RIGHT
+========================================== */
+
+/* 1. Icons Color */
+.info-icon {
+    color: #FF1493 !important;
+    display: flex;
+    align-items: center;
+}
+
+/* 2. Numbers Color & Glow */
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FF1493 !important;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+/* 3. Quote Card Background & Gradient */
+.quote-card {
+    background: linear-gradient(135deg, #FF1493, #c026d3) !important;
+    padding: 20px;
+    border-radius: 12px;
+    color: #ffffff;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(255, 20, 147, 0.3);
+}
+
+.quote-mark {
+    font-size: 3rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    margin-bottom: -15px;
+}
+
+/* Hover effect xbab3i 3la info items */
+.info-item:hover .info-icon {
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+}

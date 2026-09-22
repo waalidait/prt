@@ -1,0 +1,283 @@
+ /* ==========================================
+   1. PROJECTS SECTION & BG
+========================================== */
+.projects-section {
+    padding: 90px 8%;
+    background-color: #ffffff !important;
+    color: #111111;
+    min-height: 350vh;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+/* ==========================================
+   HEADER FIX (تحوّل لـ RELATIVE باش يطلع بحالو)
+========================================== */
+.projects-header {
+    position: relative !important; /* تحييد sticky باش العنوان يتسكرولا لفوق عادي */
+    margin-bottom: 120px !important; /* مسافة ناضية بين العنوان وستاك ديال الكروت */
+    z-index: 1 !important;
+}
+
+/* العنوان الكبير */
+.projects-title {
+    font-size: 6rem;
+    font-weight: 900;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.projects-title .word {
+    display: inline-flex;
+}
+
+.char-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+.reveal-char {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                text-shadow 0.75s ease;
+    color: #FF1493 !important;
+    text-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+}
+
+.projects-section.reveal-active .reveal-char {
+    transform: translateY(0%);
+    opacity: 1;
+    text-shadow: 0 0 20px rgba(255, 20, 147, 0.6),
+                0 0 35px rgba(255, 105, 180, 0.4);
+}
+
+/* ==========================================
+   2. CARDS STACK STICKY POSITION
+========================================== */
+.cards-stack-wrapper {
+    position: sticky !important;
+    top: 150px !important; /* الموضع المثالي للتثبيت وسط الشاشة */
+    width: 100%;
+    max-width: 900px;
+    height: 420px;
+    margin: 0 auto;
+    perspective: 1200px;
+    z-index: 10;
+}
+
+.project-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f0f11;
+    border: 1px solid rgba(255, 20, 147, 0.25);
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform-origin: center top;
+    transition: none;
+    will-change: transform;
+}
+
+/* ترتيب الـ Z-Index */
+.project-card.card-1 { z-index: 4; }
+.project-card.card-2 { z-index: 3; }
+.project-card.card-3 { z-index: 2; }
+.project-card.card-4 { z-index: 1; }
+
+.card-info {
+    flex: 1;
+    color: #ffffff;
+}
+
+.card-num {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #FF1493;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.card-info h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    color: #ffffff;
+}
+
+.card-info p {
+    color: #aaaaaa;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.card-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card-tags span {
+    padding: 6px 14px;
+    background: rgba(255, 20, 147, 0.12);
+    border: 1px solid rgba(255, 20, 147, 0.3);
+    color: #FF1493;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* ==========================================
+   3. CARDS BACKGROUND COLORS
+========================================== */
+.project-card.card-1 {
+    background: #000000;
+    border: 2px solid #333333;
+}
+.project-card.card-1 h3,
+.project-card.card-1 p,
+.project-card.card-1 .card-num { color: #FBF9EF !important; }
+.project-card.card-1 .card-tags span {
+    color: #FBF9EF !important;
+    border-color: #FBF9EF !important;
+    background: rgba(251, 249, 239, 0.1);
+}
+
+.project-card.card-2 {
+    background: #f30b1e;
+    border: 2px solid #ff4d5a;
+}
+.project-card.card-2 h3,
+.project-card.card-2 p,
+.project-card.card-2 .card-num { color: #FBF9EF !important; }
+.project-card.card-2 .card-tags span {
+    color: #FBF9EF !important;
+    border-color: #FBF9EF !important;
+    background: rgba(251, 249, 239, 0.15);
+}
+
+.project-card.card-3 {
+    background: #ffb703;
+    border: 2px solid #ffc300;
+}
+.project-card.card-3 h3,
+.project-card.card-3 p,
+.project-card.card-3 .card-num { color: #FBF9EF !important; }
+.project-card.card-3 .card-tags span {
+    color: #FBF9EF !important;
+    border-color: #FBF9EF !important;
+    background: rgba(251, 249, 239, 0.2);
+}
+
+.project-card.card-4 {
+    background: #785F47;
+    border: 2px solid #b7b7a4;
+}
+.project-card.card-4 h3,
+.project-card.card-4 p,
+.project-card.card-4 .card-num { color: #FBF9EF !important; }
+.project-card.card-4 .card-tags span {
+    color: #FBF9EF !important;
+    border-color: #FBF9EF !important;
+    background: rgba(251, 249, 239, 0.15);
+}
+
+/* ==========================================
+   4. CARD 1 GIF PREVIEW
+========================================== */
+.project-card.card-1 .card-preview {
+    flex: 1;
+    width: 50%;
+    height: 100%;
+    min-height: 250px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-gif,
+.card-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================
+   5. MULTI-GRID CARDS
+========================================== */
+.project-card.multi-grid-card {
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+}
+
+.project-card.multi-grid-card .card-info {
+    width: 100% !important;
+    flex: none !important;
+}
+
+.card-preview-grid {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 15px !important;
+    margin-top: auto !important;
+}
+
+.grid-item {
+    width: 100%;
+    height: 150px;
+    background: #111111;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects-title { font-size: 3.5rem; gap: 18px; }
+    .cards-stack-wrapper { height: 600px !important; top: 100px !important; }
+    .project-card { flex-direction: column; padding: 25px; }
+    .project-card.card-1 .card-preview { width: 100%; height: 200px; }
+    .card-preview-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .grid-item { height: 100px; }
+}
+
+/* ==========================================
+   FIX IMAGE ZOOM (SHOW FULL IMAGE INSIDE BOX)
+========================================== */
+

@@ -1,0 +1,205 @@
+ /* ========================================================
+   1. Base Section Styles
+   ======================================================== */
+.trust-section {
+    width: 100%;
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.trust-container {
+    position: relative;
+    max-width: 1100px;
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Text Central Animation */
+.trust-text {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    color: #111111;
+    line-height: 1.35;
+    max-width: 800px;
+    z-index: 2;
+    padding: 0 20px;
+    letter-spacing: -0.5px;
+    font-family: system-ui, -apple-system, sans-serif;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.trust-section.visible .trust-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. Base Icons Style */
+.trust-icon {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.trust-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0px 8px 20px rgba(0,0,0,0.12));
+}
+
+/* ========================================================
+   4. Initial Initial Positions (Before Scroll)
+   ======================================================== */
+.icon-figma {
+    top: -10px;
+    left: 40px;
+    width: 130px;
+    height: 130px;
+}
+
+.icon-photoshop {
+    top: -50px;
+    left: 50%;
+    width: 95px;
+    height: 95px;
+}
+
+.icon-illustrator {
+    top: 10px;
+    right: 40px;
+    width: 110px;
+    height: 110px;
+}
+
+.icon-blender {
+    bottom: -10px;
+    left: 60px;
+    width: 120px;
+    height: 120px;
+}
+
+.icon-spline {
+    bottom: -40px;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+/* ========================================================
+   5. Active State (When .visible is added by Scroll)
+   ======================================================== */
+.trust-section.visible .icon-figma {
+    animation: entrance-figma 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards,
+               continuous-rotate 12s linear 1s infinite;
+}
+
+.trust-section.visible .icon-photoshop {
+    animation: entrance-photoshop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s forwards,
+               continuous-pulse 3s ease-in-out 1.15s infinite;
+}
+
+.trust-section.visible .icon-illustrator {
+    animation: entrance-illustrator 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards,
+               continuous-bounce 2.5s ease-in-out 1.3s infinite;
+}
+
+.trust-section.visible .icon-blender {
+    animation: entrance-blender 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.65s forwards,
+               continuous-wiggle 4s ease-in-out 1.45s infinite;
+}
+
+.trust-section.visible .icon-spline {
+    animation: entrance-spline 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards,
+               continuous-float 3.5s ease-in-out 1.6s infinite;
+}
+
+/* ========================================================
+   6. Keyframes: Entrance Animations
+   ======================================================== */
+@keyframes entrance-figma {
+    from { opacity: 0; transform: translate(-100px, -80px) rotate(-45deg) scale(0.5); }
+    to { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes entrance-photoshop {
+    from { opacity: 0; transform: translate(-50%, -100px) rotate(30deg) scale(0.5); }
+    to { opacity: 1; transform: translate(-50%, 0) rotate(10deg) scale(1); }
+}
+
+@keyframes entrance-illustrator {
+    from { opacity: 0; transform: translate(120px, 0) rotate(45deg) scale(0.4); }
+    to { opacity: 1; transform: translate(0, 0) rotate(18deg) scale(1); }
+}
+
+@keyframes entrance-blender {
+    from { opacity: 0; transform: translate(-80px, 100px) rotate(-30deg) scale(0.5); }
+    to { opacity: 1; transform: translate(0, 0) rotate(-12deg) scale(1); }
+}
+
+@keyframes entrance-spline {
+    from { opacity: 0; transform: translate(-50%, 100px) rotate(-15deg) scale(0.5); }
+    to { opacity: 1; transform: translate(-50%, 0) rotate(-8deg) scale(1); }
+}
+
+/* ========================================================
+   7. Keyframes: Continuous Custom Movement per Icon
+   ======================================================== */
+
+/* 1. Figma: 360 Rotation */
+@keyframes continuous-rotate {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* 2. Photoshop: Pulse / Heartbeat */
+@keyframes continuous-pulse {
+    0%, 100% { transform: translate(-50%, 0) rotate(10deg) scale(1); }
+    50% { transform: translate(-50%, -8px) rotate(10deg) scale(1.15); }
+}
+
+/* 3. Illustrator: Side to Side Bounce */
+@keyframes continuous-bounce {
+    0%, 100% { transform: translate(0, 0) rotate(18deg); }
+    50% { transform: translate(15px, -10px) rotate(25deg); }
+}
+
+/* 4. Blender: Tilting / Wiggle */
+@keyframes continuous-wiggle {
+    0%, 100% { transform: translate(0, 0) rotate(-12deg); }
+    25% { transform: translate(-5px, 5px) rotate(-22deg); }
+    75% { transform: translate(5px, -5px) rotate(-2deg); }
+}
+
+/* 5. Spline: Floating Up and Down */
+@keyframes continuous-float {
+    0%, 100% { transform: translate(-50%, 0) rotate(-8deg); }
+    50% { transform: translate(-50%, -18px) rotate(-4deg); }
+}
+
+/* ========================================================
+   8. Mobile Responsive
+   ======================================================== */
+@media (max-width: 768px) {
+    .trust-text { font-size: 1.2rem; }
+    .trust-container { min-height: 550px; }
+    .trust-icon { width: 65px !important; height: 65px !important; }
+    .icon-figma { top: 0; left: 10px; }
+    .icon-photoshop { top: -30px; }
+    .icon-illustrator { top: 0; right: 10px; }
+    .icon-blender { bottom: 0; left: 10px; }
+    .icon-spline { bottom: -20px; }
+}

@@ -176,3 +176,168 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+  
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const curatedSection = document.querySelector(".curated-works");
+    const orbit = document.querySelector(".works-orbit");
+    const items = gsap.utils.toArray(".work-item");
+
+    if (!curatedSection || !orbit) return;
+
+    /* =========================
+       GLOBAL ROSE MODE TRIGGER
+       ========================= */
+    ScrollTrigger.create({
+        trigger: curatedSection,
+
+        start: "top 50%", /* أول ما توصل السكشن لمنتصف الشاشة كتحول الصفحة كاملة للغوز */
+        end: "bottom 30%",
+
+        onEnter: () => {
+            document.documentElement.classList.add("rose-mode");
+            document.body.classList.add("rose-mode");
+        },
+
+        onLeave: () => {
+            document.documentElement.classList.remove("rose-mode");
+            document.body.classList.remove("rose-mode");
+        },
+
+        onEnterBack: () => {
+            document.documentElement.classList.add("rose-mode");
+            document.body.classList.add("rose-mode");
+        },
+
+        onLeaveBack: () => {
+            document.documentElement.classList.remove("rose-mode");
+            document.body.classList.remove("rose-mode");
+        }
+    });
+
+    /* =========================
+       ORBIT ROTATION
+       ========================= */
+    gsap.to(orbit, {
+        rotate: 180,
+        ease: "none",
+        scrollTrigger: {
+            trigger: curatedSection,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2
+        }
+    });
+
+    /* =========================
+       KEEP IMAGES STRAIGHT
+       ========================= */
+    items.forEach((item) => {
+        gsap.to(item, {
+            rotate: -180,
+            ease: "none",
+            scrollTrigger: {
+                trigger: curatedSection,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.2
+            }
+        });
+    });
+
+});
+
+ScrollTrigger.create({
+    trigger: ".curated-works",
+    start: "top 50%", /* كينطلق التحول للغوز فـ دقة واحدة أول ما توصل السكشن للنص */
+    end: "bottom 20%",
+
+    onEnter: () => document.documentElement.classList.add("rose-mode"),
+    onLeave: () => document.documentElement.classList.remove("rose-mode"),
+    onEnterBack: () => document.documentElement.classList.add("rose-mode"),
+    onLeaveBack: () => document.documentElement.classList.remove("rose-mode")
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+// 1. Rose Mode Trigger (تغيير اللون)
+ScrollTrigger.create({
+    trigger: ".curated-works",
+    start: "top 50%",
+    end: "bottom 20%",
+    onEnter: () => document.documentElement.classList.add("rose-mode"),
+    onLeave: () => document.documentElement.classList.remove("rose-mode"),
+    onEnterBack: () => document.documentElement.classList.add("rose-mode"),
+    onLeaveBack: () => document.documentElement.classList.remove("rose-mode")
+});
+
+// 2. Expand Animation (تفتح الكروت بالـ Scroll)
+const items = gsap.utils.toArray('.work-item');
+
+gsap.set(items, {
+    scale: 0,
+    opacity: 0
+});
+
+gsap.to(items, {
+    scale: 1,
+    opacity: 1,
+    stagger: 0.05,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".curated-works",
+        start: "top 75%",
+        end: "top 30%",
+        scrub: 1
+    }
+});
+
+// 3. Auto-Rotate + Scroll Rotation + Counter-Rotation (لكروت واقفين مقادين)
+let autoAngle = 0;
+let scrollAngle = { value: 0 };
+
+// كنزيدو rotation بالـ Scroll فوق الدوران العادي
+gsap.to(scrollAngle, {
+    value: 360, // شحال تدور فاش تسكرولي السكشن كاملة
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".curated-works",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1
+    }
+});
+
+// GSAP Ticker كيجْمَع الدوران التلقائي + الدوران ديال الـ Scroll فـ كل فريم
+gsap.ticker.add(() => {
+    autoAngle += 0.3; // السرعة ديال التدوير التلقائي
+
+    // الزاوية الإجمالية = الدوران التلقائي + دوران السكرول
+    const totalAngle = autoAngle + scrollAngle.value;
+
+    // تدوير الحاوية الكبيرة
+    gsap.set(".works-orbit", { rotation: totalAngle });
+
+    // دوران عكسي للكروت باش يبقاو واقفين نيشان 100%
+    gsap.set(".work-item", { rotation: -totalAngle });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+        const trustSection = document.querySelector(".trust-section");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    trustSection.classList.add("visible");
+                }
+            });
+        }, {
+            threshold: 0.35 // تبدأ الحركة ملي تدخل 35% من السيكشن فـ الشاشة
+        });
+
+        observer.observe(trustSection);
+    });

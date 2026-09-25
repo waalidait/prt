@@ -648,3 +648,80 @@ if (aboutSection) {
     observer.observe(aboutSection);
 }
  
+
+document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectItems = document.querySelectorAll(".project-item");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            // 1. تحييد الكلاس active من كاع الباطونات وتعيينها للباطونة المكليكية
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            // 2. قراءة قيمة الفلتر المكليكي عليه
+            const selectedFilter = button.getAttribute("data-filter");
+
+            // 3. إظهار/إخفاء الصور حسب Category
+            projectItems.forEach(item => {
+                const itemCategory = item.getAttribute("data-category");
+
+                if (selectedFilter === "all" || itemCategory === selectedFilter) {
+                    item.classList.remove("hide");
+                } else {
+                    item.classList.add("hide");
+                }
+            });
+        });
+    });
+});
+
+   
+  
+document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+    const overlay = wrapper.querySelector('.hover-overlay');
+
+    wrapper.addEventListener('mousemove', (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        overlay.style.left = `${x}px`;
+        overlay.style.top = `${y}px`;
+    });
+});
+ 
+ document.addEventListener("DOMContentLoaded", () => {
+    const waveOverlay = document.getElementById("waveOverlay");
+    const links = document.querySelectorAll("a");
+
+    links.forEach(link => {
+        link.addEventListener("click", (e) => {
+            const targetUrl = link.getAttribute("href");
+
+            // تأكد باللي الرابط كيدي لصفحة HTML تانية حقيقية ماشي JavaScript أو Anchor
+            if (
+                targetUrl && 
+                targetUrl !== "#" &&
+                !targetUrl.startsWith("#") && 
+                !targetUrl.startsWith("javascript:") &&
+                !link.hasAttribute("download") &&
+                link.target !== "_blank"
+            ) {
+                e.preventDefault();
+                waveOverlay.classList.add("active");
+
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 750);
+            }
+        });
+    });
+});
+
+window.addEventListener("pageshow", () => {
+    const waveOverlay = document.getElementById("waveOverlay");
+    if (waveOverlay) {
+        waveOverlay.classList.remove("active");
+    }
+});

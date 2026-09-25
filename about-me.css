@@ -452,3 +452,8 @@
     transform: scale(1.15);
     transition: transform 0.3s ease;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+ 

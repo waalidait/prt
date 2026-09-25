@@ -1,0 +1,847 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khadija Jamal - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+      <style>
+        /* ==========================================
+   RESET & BASE STYLES
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 25px 40px;
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.logo a {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.6;
+}
+
+.connect-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px #000;
+    transition: all 0.2s ease;
+}
+
+.connect-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+/* ==========================================
+   WORKS SECTION & FILTERS
+========================================== */
+.works-section {
+    margin-top: 40px;
+}
+
+.main-title {
+    font-size: 6.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1.5px solid transparent;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+}
+
+.filter-btn.active {
+    border-color: #000;
+    background-color: transparent;
+}
+
+.filter-btn:hover:not(.active) {
+    opacity: 0.6;
+}
+
+/* ==========================================
+   PROJECTS GRID & ITEM LAYOUT
+========================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.project-item.hide {
+    display: none !important;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+/* ==========================================
+   IMAGE WRAPPER & HOVER CURSOR
+========================================== */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background-color: #f5f5f5;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: none; /* إخفاء سهم الماوس العادي */
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.04);
+}
+
+/* Container ديال الماوس المخصصة */
+.hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* 🖤 1. الدائرة السوداء فـ الأول (50px x 50px - Circle كاملة) */
+.hover-overlay::before {
+    content: "";
+    position: absolute;
+    width: 50px;             /* العرض البدائي */
+    height: 50px;            /* الارتفاع الثابت */
+    background-color: #000000;
+    border-radius: 50px;     /* شكل مدور */
+    /* تحول هادئ للعرض باش تحل من اليمين واليسار */
+    transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 0.3s ease;
+    z-index: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 📝 2. العنوان البيض (مخفي فـ الأول) */
+.hover-title {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 12px 28px;
+    opacity: 0;
+    transform: scale(0.8);
+    /* delay ديال 0.18s باش تبان الدائرة هي الأولى كتحل عاد يظهر النص */
+    transition: opacity 0.25s ease 0.18s, transform 0.25s ease 0.18s;
+}
+
+/* ==========================================
+   HOVER ACTIONS (التفاعل عند مرور الماوس)
+========================================== */
+.image-wrapper:hover .hover-overlay {
+    opacity: 1;
+}
+
+/* 3. الدائرة كـتوسع أفقياً (Horizontal Stretch) وتتحول لـ Pill */
+.image-wrapper:hover .hover-overlay::before {
+    width: 100%;             /* تتوسع تاخد عرض النص بالكامل */
+}
+
+/* 4. إظهار النص البيض فـ وسط البادج */
+.image-wrapper:hover .hover-title {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Metadata */
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-meta h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.project-meta span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #666;
+}
+
+/* ==========================================
+   HOVER OVERLAY & ANIMATION
+========================================== */
+.hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /* Daira kat'ban hiya l-awla f-0.15s */
+    transition: opacity 0.15s ease;
+}
+
+/* 🖤 1. L-Kora Kat'bda Daira 50px x 50px */
+.hover-overlay::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #000000;
+    border-radius: 50px;
+    /* transition d width fiha delay d 0.15s bech t'tsna l-kora t'ban hiya l-awla */
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1) 0.15s;
+    z-index: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 📝 2. Text البيض (مخفي فـ الأول) */
+.hover-title {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding: 12px 28px;
+    opacity: 0;
+    transform: scale(0.7);
+    /* Delay d 0.35s bech hta t'hall l-kora mzian 3ad i'ban l-text */
+    transition: opacity 0.3s ease 0.35s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.35s;
+}
+
+/* ==========================================
+   HOVER STATES (Triggers)
+========================================== */
+.image-wrapper:hover .hover-overlay {
+    opacity: 1;
+}
+
+/* 3. Men ba3d ma kat'ban l-kora, kat'hall atek-atek l-ymin w l-yessar */
+.image-wrapper:hover .hover-overlay::before {
+    width: 100%; /* Kat'tsa3 3la 9ad l-text */
+}
+
+/* 4. L-text kay'ban m3a l-fethah d l-kora */
+.image-wrapper:hover .hover-title {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.image-wrapper {
+    display: block;
+    text-decoration: none;
+}
+
+/* ==========================================
+   CONTACT / COMMUNITY BANNER SECTION
+========================================== */
+.community-section {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto 20px auto;
+    display: flex;
+    align-items: center;
+    padding-left: 90px;
+}
+
+/* Badge rotante */
+.rotating-badge-wrapper {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+    height: 250px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rotating-text {
+    width: 100%;
+    height: 100%;
+    animation: spinText 18s linear infinite;
+}
+
+@keyframes spinText {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Icona centrale senza sfondo bianco */
+.center-badge-image {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.center-badge-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Scheda contatto */
+.community-card {
+    flex: 1;
+    border: 2px solid #000;
+    border-radius: 24px;
+    padding: 40px 40px 40px 160px;
+    background-color: #ffffff;
+}
+
+.community-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.community-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 24px;
+}
+
+/* Form e Input */
+.community-action-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.community-form {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    max-width: 420px;
+    width: 100%;
+}
+
+.email-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    color: #000;
+    min-width: 0;
+}
+
+.email-input::placeholder {
+    color: #888;
+}
+
+.join-btn {
+    border: none;
+    border-left: 2px solid #000;
+    background-color: transparent;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.join-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* ==========================================
+   INFINITE MARQUEE BANNER
+========================================== */
+.marquee-container {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    animation: marqueeAnimation 18s linear infinite;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.marquee-item .icon {
+    font-size: 0.8rem;
+    display: inline-block;
+}
+/* الأنيمايشن فـ ملف CSS */
+
+.center-badge-image img {
+    /* الأنيمايشن كديرها كـ "wiggle" (هزة خفيفة) */
+    animation: wiggle 3s ease-in-out infinite;
+    /* كتحكم فـ سرعة وحركة الأنيمايشن */
+}
+
+/* تعريف الأنيمايشن */
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+}
+/* Dynamic smooth loop keyframes */
+@keyframes marqueeAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* Wave Transition Overlay */
+.wave-transition-overlay {
+    position: fixed;
+    bottom: -120vh; /* مخفية تحت الشاشة فـ الأول */
+    left: 0;
+    width: 100vw;
+    height: 120vh;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.wave-svg {
+    width: 100%;
+    height: 150px;
+    margin-bottom: -2px; /* لتفادي أي فراغ بين الـ SVG والـ Fill */
+}
+
+.wave-fill {
+    width: 100%;
+    flex: 1;
+    background-color: #000000; /* لون الموجة (كحل تناسباً مع Brutalist style) */
+}
+
+/* الكلاس اللي كيطبق ملي كيدار الكليك */
+.wave-transition-overlay.active {
+    transform: translateY(-120vh);
+}
+      </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="#">KHADIJA JAMAL © 2026</a>
+        </div>
+        <nav class="nav-links">
+    <a href="#home" class="active">HOME</a>
+    <a href="#work">WORK</a>
+    <a href="#about">ABOUT</a>
+    <a href="pdf/cv.pdf" download="Khadija_Jamal_CV.pdf">MY RESUME</a>
+</nav>
+        <div class="connect-btn-wrapper">
+            <a href="#contact" class="connect-btn">CONNECT</a>
+        </div>
+    </header>
+
+    <!-- MAIN WORKS SECTION -->
+    <main class="works-section">
+        <!-- TITLE -->
+        <h1 class="main-title">MY WORKS</h1>
+ 
+        <!-- PROJECTS GRID (2 COLUMNS) -->
+          <!-- FILTER BUTTONS -->
+<div class="filter-tabs">
+    <button class="filter-btn active" data-filter="all">ALL</button>
+    <button class="filter-btn" data-filter="cat1">GAME DESIGN</button>
+    <button class="filter-btn" data-filter="cat2">BRANDING</button>
+    <button class="filter-btn" data-filter="cat3">PIXEL ART</button>
+    <button class="filter-btn" data-filter="cat4">EDITORIAL</button>
+</div>
+
+<!-- ALL 13 PROJECTS GRID -->
+  <div class="projects-grid">
+    <div class="project-item" data-category="cat1">
+        <a href="project-detail.html?id=game-world" class="image-wrapper">
+            <img src="img/Video Games Animation GIF by FOU.gif" alt="Game World Animation">
+            <div class="hover-overlay">
+                <span class="hover-title">Game World Design</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Game World Design</h3>
+            <span>GAME DESIGN</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat2">
+        <a href="project-detail.html?id=neo-1" class="image-wrapper">
+            <img src="img/téléchargement (1).jpeg" alt="Neoclassical Preview 1">
+            <div class="hover-overlay">
+                <span class="hover-title">Neoclassical Aesthetics I</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Neoclassical Aesthetics I</h3>
+            <span>BRANDING</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat2">
+        <a href="project-detail.html?id=neo-2" class="image-wrapper">
+            <img src="img/téléchargement (3).jpeg" alt="Neoclassical Preview 2">
+            <div class="hover-overlay">
+                <span class="hover-title">Neoclassical Aesthetics II</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Neoclassical Aesthetics II</h3>
+            <span>BRANDING</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat2">
+        <a href="project-detail.html?id=neo-3" class="image-wrapper">
+            <img src="img/téléchargement (4).jpeg" alt="Neoclassical Preview 3">
+            <div class="hover-overlay">
+                <span class="hover-title">Neoclassical Aesthetics III</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Neoclassical Aesthetics III</h3>
+            <span>BRANDING</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat2">
+        <a href="project-detail.html?id=dont-ctrl-v" class="image-wrapper">
+            <img src="img/DON’T BE CTRL V⚪️🔴.jpeg" alt="Neoclassical Preview 4">
+            <div class="hover-overlay">
+                <span class="hover-title">Don't Be Ctrl V</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Don't Be Ctrl V</h3>
+            <span>BRANDING</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat3">
+        <a href="project-detail.html?id=pixel-snack" class="image-wrapper">
+            <img src="img/🍕👾 RETRO PIXEL SNACK ATTACK.jpeg" alt="Pixel Art Snack Attack">
+            <div class="hover-overlay">
+                <span class="hover-title">Retro Pixel Snack Attack</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Retro Pixel Snack Attack</h3>
+            <span>PIXEL ART</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat3">
+        <a href="project-detail.html?id=beliel-runner" class="image-wrapper">
+            <img src="img/Beliel _ Runner arcade.jpeg" alt="Runner Arcade">
+            <div class="hover-overlay">
+                <span class="hover-title">Beliel Runner Arcade</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Beliel Runner Arcade</h3>
+            <span>PIXEL ART</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat3">
+        <a href="project-detail.html?id=pixel-retro" class="image-wrapper">
+            <img src="img/téléchargement (5).jpeg" alt="Pixel Art Level Up">
+            <div class="hover-overlay">
+                <span class="hover-title">Pixel Retro Level</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Pixel Retro Level</h3>
+            <span>PIXEL ART</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat3">
+        <a href="project-detail.html?id=arcade-sprites" class="image-wrapper">
+            <img src="img/téléchargement (6).jpeg" alt="Pixel Art Character">
+            <div class="hover-overlay">
+                <span class="hover-title">Arcade Sprites</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Arcade Sprites</h3>
+            <span>PIXEL ART</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat4">
+        <a href="project-detail.html?id=keep-moving" class="image-wrapper">
+            <img src="img/Keep Moving — Bold Black & White Typography Poster.jpeg" alt="Keep Moving Typography">
+            <div class="hover-overlay">
+                <span class="hover-title">Keep Moving Typography</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Keep Moving Typography</h3>
+            <span>EDITORIAL</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat4">
+        <a href="project-detail.html?id=editorial-1" class="image-wrapper">
+            <img src="img/téléchargement (7).jpeg" alt="Editorial Spread 1">
+            <div class="hover-overlay">
+                <span class="hover-title">Editorial Layout I</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Editorial Layout I</h3>
+            <span>EDITORIAL</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat4">
+        <a href="project-detail.html?id=editorial-2" class="image-wrapper">
+            <img src="img/téléchargement (8).jpeg" alt="Editorial Spread 2">
+            <div class="hover-overlay">
+                <span class="hover-title">Editorial Layout II</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>Editorial Layout II</h3>
+            <span>EDITORIAL</span>
+        </div>
+    </div>
+
+    <div class="project-item" data-category="cat4">
+        <a href="project-detail.html?id=high-contrast" class="image-wrapper">
+            <img src="img/téléchargement (2).jpeg" alt="Editorial Poster">
+            <div class="hover-overlay">
+                <span class="hover-title">High Contrast Poster</span>
+            </div>
+        </a>
+        <div class="project-meta">
+            <h3>High Contrast Poster</h3>
+            <span>EDITORIAL</span>
+        </div>
+    </div>
+</div>
+    </main>
+
+    <div class="marquee-container">
+    <div class="marquee-content">
+        <!-- Group 1 -->
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+
+        <!-- Group 2 (Duplicate for smooth infinite scroll) -->
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+    </div>
+</div>
+<section class="community-section">
+    <!-- Rotating Badge Wrapper -->
+    <div class="rotating-badge-wrapper">
+        <svg class="rotating-text" viewBox="0 0 200 200">
+            <path id="textPath" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none" />
+            <text font-size="12" font-weight="900" letter-spacing="3.2">
+                <textPath href="#textPath" startOffset="0%">
+                    KHADIJA JAMAL • CREATIVE DESIGNER • KHADIJA JAMAL • 
+                </textPath>
+            </text>
+        </svg>
+
+        <div class="center-badge-image">
+            <img src="icon.img/gmail.png" alt="Khadija Jamal">
+        </div>
+    </div>
+
+    <!-- Contact Card -->
+    <div class="community-card">
+        <h2 class="community-title">GET IN TOUCH</h2>
+        <p class="community-subtitle">Have a project in mind? Drop your email below.</p>
+        
+        <div class="community-action-row">
+            <form class="community-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Your Email Address" class="email-input" required>
+                <button type="submit" class="join-btn">SEND</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Wave Transition Overlay -->
+<div class="wave-transition-overlay" id="waveOverlay">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none" class="wave-svg">
+        <path fill="#000000" d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,213.3C672,224,768,192,864,165.3C960,139,1056,117,1152,128C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+    <div class="wave-fill"></div>
+</div>
+    <script src="main.js"></script>
+</body>
+</html>

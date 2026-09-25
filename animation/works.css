@@ -1,4 +1,4 @@
- /* ==========================================
+  /* ==========================================
    1. PROJECTS SECTION & BG
 ========================================== */
 .projects-section {
@@ -28,31 +28,41 @@
 }
 
 .projects-title .word { display: inline-flex; }
-
+ /* 1. L-Wrapper: Hiyyedna overflow: hidden باش l-glow ma-yt9ta3ch f-l-jwaneb */
 .char-wrapper {
     display: inline-block;
-    overflow: hidden;
+    overflow: visible !important; /* Hna l-srr باش y-thiydo l-morabba3at */
     vertical-align: bottom;
+    padding: 0 4px; /* Space khfif باش l-glow y-akhod rahatou */
 }
 
+/* 2. L-Char Style dyal MY WORKS */
 .reveal-char {
     display: inline-block;
     transform: translateY(110%);
     opacity: 0;
     transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
-                opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                text-shadow 0.75s ease;
+                opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     color: #FF1493 !important;
-    text-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* 3. Fash kay-t3iyyet 3la reveal-active kay-khdem l-Glow l-9awi d-About Me */
+.projects-section.reveal-active .reveal-char {
+    transform: translateY(0%);
+    opacity: 1;
+    color: #FF1493 !important;
+    /* Nefs l-text-shadow l-9awi d-About Me */
+    text-shadow: 0 0 12px rgba(255, 20, 147, 0.9),
+                 0 0 25px rgba(255, 105, 180, 0.8),
+                 0 0 40px rgba(255, 20, 147, 0.6) !important;
 }
 
 .projects-section.reveal-active .reveal-char {
     transform: translateY(0%);
-    opacity: 1;
-    text-shadow: 0 0 20px rgba(255, 20, 147, 0.6),
-                0 0 35px rgba(255, 105, 180, 0.4);
+    animation: aboutLightBulbFlicker 1.2s forwards;
 }
-
 /* ==========================================
    2. CARDS STACK STICKY POSITION
 ========================================== */
@@ -270,3 +280,116 @@ html.rose-mode .curated-title { color: #ffffff !important; }
 html.rose-mode .curated-title span { color: #FBF9EF !important; opacity: 0.95; }
 html.rose-mode .curated-desc { color: #ffffff !important; opacity: 0.85; }
   
+/* Container كيتوسطن ديريكت فـ نص الـ Stack Wrapper */
+.see-all-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Centering Perfect: -50% X w -50% Y */
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5; /* قل من الكروت فـ اللول باش يغبر وراهم */
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                opacity 0.5s ease;
+}
+
+/* ملي كتقلب الكارت الأخيرة، كيتزاد show-btn ويكبر فـ الوسط */
+.see-all-container.show-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+    pointer-events: auto;
+    z-index: 100; /* كيتزاد باش يولي كيتكليكا عليه */
+}
+.cards-stack-wrapper {
+    position: relative; /* باش position: absolute ديال الزر تحسب عليه هو */
+}
+
+/* ==========================================
+   NEON PINK BUTTON STYLE
+========================================== */
+
+.see-all-container {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.3) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                opacity 0.5s ease !important;
+    width: max-content;
+}
+
+.see-all-container.show-btn {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    pointer-events: auto !important;
+    z-index: 999 !important;
+}
+
+.see-all-final-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 18px 42px;
+    background: #0f0f11;
+    color: #ffffff !important;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 100px;
+    border: 2px solid #FF1493;
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.35), 
+                inset 0 0 12px rgba(255, 20, 147, 0.15);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+/* النص و السهم */
+.see-all-final-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.see-all-final-btn svg {
+    position: relative;
+    z-index: 2;
+    stroke: #FF1493;
+    transition: transform 0.3s ease, stroke 0.3s ease;
+}
+
+/* تأثير الـ Hover */
+.see-all-final-btn:hover {
+    background: #FF1493;
+    color: #ffffff !important;
+    border-color: #FF1493;
+    box-shadow: 0 0 35px rgba(255, 20, 147, 0.8),
+                0 0 60px rgba(255, 20, 147, 0.4);
+    transform: translateY(-3px) scale(1.03);
+}
+
+.see-all-final-btn:hover svg {
+    stroke: #ffffff;
+    transform: translateX(6px);
+}
+
+/* تأثير Pulsing Glow خفيف فـ الخلفية */
+@keyframes btnPulse {
+    0% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.35); }
+    50% { box-shadow: 0 0 30px rgba(255, 20, 147, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.35); }
+}
+
+.see-all-container.show-btn .see-all-final-btn {
+    animation: btnPulse 3s infinite ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}

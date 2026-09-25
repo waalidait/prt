@@ -341,3 +341,81 @@ document.addEventListener("DOMContentLoaded", function () {
 
         observer.observe(trustSection);
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+    // 1. Stagger Delay للأحرف + Observer للعنوان
+    const projectsSection = document.querySelector(".projects-section");
+    if (projectsSection) {
+        const allChars = projectsSection.querySelectorAll(".reveal-char");
+        allChars.forEach((char, index) => {
+            char.style.transitionDelay = `${index * 0.04}s`;
+        });
+
+        const projectsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    projectsSection.classList.add("reveal-active");
+                }
+            });
+        }, { threshold: 0.1 });
+
+        projectsObserver.observe(projectsSection);
+    }
+
+    // 2. التحكم فـ حركة الكروت + ظهور الزر مع الكارت الأخيرة
+    const cards = Array.from(document.querySelectorAll(".project-card"));
+    const stackWrapper = document.querySelector(".cards-stack-wrapper");
+    const seeAllContainer = document.querySelector(".see-all-container");
+
+    window.addEventListener("scroll", () => {
+        if (!stackWrapper || !projectsSection) return;
+
+        const sectionRect = projectsSection.getBoundingClientRect();
+        const totalScroll = -sectionRect.top;
+        const maxScroll = sectionRect.height - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, totalScroll / maxScroll));
+
+        cards.forEach((card, index) => {
+            const startThreshold = index * 0.22;
+            const endThreshold = startThreshold + 0.22;
+
+            if (progress <= startThreshold) {
+                card.style.transform = `translateY(0px) rotateX(0deg) scale(1)`;
+                card.style.zIndex = cards.length - index;
+            } else if (progress >= endThreshold) {
+                card.style.transform = `translateY(-260px) rotateX(105deg) scale(0.95)`;
+                card.style.zIndex = 50 + index;
+            } else {
+                card.style.zIndex = 50 + index;
+                const cardProgress = (progress - startThreshold) / 0.22;
+
+                let translateY = 0;
+                let rotateX = 0;
+                let scale = 1;
+
+                if (cardProgress <= 0.4) {
+                    const subProgress = cardProgress / 0.4;
+                    translateY = -120 * subProgress;
+                    rotateX = 10 * subProgress;
+                    scale = 1 + (0.02 * subProgress);
+                } else {
+                    const subProgress = (cardProgress - 0.4) / 0.6;
+                    translateY = -120 - (140 * subProgress);
+                    rotateX = 10 + (95 * subProgress);
+                    scale = 1.02 - (0.07 * subProgress);
+                }
+
+                card.style.transform = `translateY(${translateY}px) rotateX(${rotateX}deg) scale(${scale})`;
+            }
+        });
+
+        // 3. التحكم فـ ظهور الزر: كيبان فقط ملي تقلب الكارت الأخيرة (مثلاً ملي ينفوت السكرول 0.75)
+        if (seeAllContainer) {
+    if (progress >= 0.70) { 
+        seeAllContainer.classList.add("show-btn");
+    } else {
+        seeAllContainer.classList.remove("show-btn");
+    }
+}
+    });
+});

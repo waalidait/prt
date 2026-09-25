@@ -267,11 +267,12 @@ body {
 }
 
 /* Sstor l-lowel: MY NAME IS (kbiir w ghliid) */
+ /* الكلاس الأساسي ديالك كيفما هو */
 .hero-text .bg-line {
     font-family: 'Anton', 'Impact', sans-serif !important;
     display: block !important;
     opacity: 1 !important;
-    font-size: 10vw !important; /* Rj3na l-hagm kbiir bzaf */
+    font-size: 10vw !important;
     line-height: 0.9 !important;
     color: #f30b0b;
     text-transform: uppercase;
@@ -279,6 +280,25 @@ body {
     white-space: nowrap;
     transform: scaleY(1.15) !important;
     transform-origin: left center;
+}
+
+/* 1. السطر الأول (MY NAME IS...): كيبقا ممتلئ بالأحمر */
+.hero-text .line-left {
+    color: #f30b0b !important;
+    -webkit-text-stroke: 0px !important;
+}
+
+/* 2. السطر الثاني (KHADIJA JAMAL / CREATIVE / DESIGNER): خاوية وبـ Border أبيض */
+.hero-text .line-right {
+    color: transparent !important; /* خاوية من الوسط */
+    -webkit-text-stroke: 2px #ffffff !important; /* Border بالأبيض */
+    text-stroke: 2px #ffffff !important;
+}
+
+/* الحرف اللي كيدير flicker (بحال K) ياخد نفس الـ Border */
+.hero-text .line-right .flicker-letter {
+    color: transparent !important;
+    -webkit-text-stroke: 2px #ffffff !important;
 }
 
 /* Sstor l-thani: KHADIJA JAMAL (m-ba33ed f-l-ikhtilaf w m-kaHzz l-lisser) */

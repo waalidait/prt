@@ -1,0 +1,852 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="project.css">
+    <style>
+/* ==========================================
+   RESET & BASE
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 25px 40px;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 60px;
+}
+
+.logo a {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.connect-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0px #000;
+}
+
+/* ==========================================
+   VERTICAL TEXT
+========================================== */
+.vertical-text {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #000;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* ==========================================
+   PROJECT HERO SECTION
+========================================== */
+.project-hero {
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.project-title {
+    font-size: 8rem;
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 0.9;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.project-details-grid {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 40px;
+    align-items: start;
+}
+
+.services-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.pill-tag {
+    display: inline-block;
+    border: 1.5px solid #000;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.services-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.services-list li {
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #000;
+}
+
+.description-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 650px;
+}
+
+.sub-heading {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.description-text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #111;
+}
+
+.banner-image-container {
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.full-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ==========================================
+   RELATED PROJECTS (GRID AT BOTTOM)
+========================================== */
+.related-section {
+    margin-top: 100px;
+    padding-top: 40px;
+    border-top: 2px solid #000;
+}
+
+.related-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.related-card {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+}
+
+.related-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.related-card h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.related-card span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+}
+
+/* ==========================================
+   MAIN BANNER IMAGE (تصغير حجم الصورة الرئيسية)
+========================================== */
+.banner-image-container {
+    width: 100%;
+    max-width: 1000px; /* تصغير العرض الأقصى */
+    margin: 30px auto 60px auto; /* تحييد الصورة فـ الوسط */
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.full-banner-img {
+    width: 100%;
+    max-height: 520px; /* تحديد ارتفاع أقصى باش ما تجيش كبيرة بزاف */
+    display: block;
+    object-fit: cover; /* كتحافظ على جودة الصورة بلا ما تمدد */
+    border-radius: 16px;
+}
+
+/* ==========================================
+   RELATED GALLERY GRID (تستيف الصور 2 فـ الصف)
+========================================== */
+.related-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 80px auto;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* تستيف التصاور 2 فـ الصف بحال التصويرة */
+    gap: 24px; /* المسافة بين التصاور */
+}
+
+.related-card {
+    display: block;
+    width: 100%;
+    height: 380px; /* ارتفاع متناسق للكروت */
+    border-radius: 20px; /* زوايا مائلين نقيين بحال التصويرة */
+    overflow: hidden;
+    text-decoration: none;
+    background-color: #f5f5f5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.related-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 20px;
+}
+
+/* التجاوب مع شاشات الهواتف */
+@media (max-width: 768px) {
+    .related-grid {
+        grid-template-columns: 1fr; /* فـ التليفون يرجعو تصويرة تحت تصويرة */
+    }
+    .related-card {
+        height: 260px;
+    }
+}
+
+/* ==========================================
+   INFINITE MARQUEE BANNER
+========================================== */
+.marquee-container {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    animation: marqueeAnimation 18s linear infinite;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.marquee-item .icon {
+    font-size: 0.8rem;
+    display: inline-block;
+}
+
+/* Dynamic smooth loop keyframes */
+@keyframes marqueeAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* نقص الهامش العلوي ديال الشريط الأسود */
+.marquee-container {
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    margin-top: 15px; /* نقصناها من 60px لـ 15px باش تقرب للخط */
+    display: flex;
+    align-items: center;
+}
+/* يلا كان الخط أو الـ Footer Container هو اللي مخلي الفراغ */
+hr, .footer-line, .related-section {
+    margin-bottom: 10px !important;
+}
+/* ==========================================
+   COMMUNITY BANNER SECTION (BIGGER SIZE)
+========================================== */
+.community-section {
+    position: relative;
+    width: 100%;
+    max-width: 1100px; /* تكبير الحاوية العامة */
+    margin: 60px auto 30px auto;
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+}
+
+/* Dynamic Rotating Badge Wrapper (تكبير العرض والارتفاع) */
+.rotating-badge-wrapper {
+    position: absolute;
+    left: -20px; /* الخارج على اليسار كيما فـ الصورة */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 290px;  /* كبرناها لـ 290px */
+    height: 290px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SVG Circular Animation */
+.rotating-text {
+    width: 100%;
+    height: 100%;
+    animation: spinText 18s linear infinite;
+}
+
+@keyframes spinText {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Center Image (البلاصة فين غتحط تصويرتك) */
+.center-badge-image {
+    position: absolute;
+    width: 160px; /* قياس مناسب للتصويرة فـ الوسط */
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.center-badge-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Community Box Card */
+.community-card {
+    flex: 1;
+    border: 2px solid #000;
+    border-radius: 28px;
+    padding: 45px 50px 45px 180px; /* الهامش الأيسر باش الدائرة الكبيرة ما تغطيش النص */
+    background-color: #ffffff;
+}
+
+.community-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 6px;
+}
+
+.community-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Community Input & Button */
+.community-form {
+    display: flex;
+    border: 2px solid #000;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.email-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 24px;
+    font-size: 1rem;
+    color: #000;
+}
+
+.email-input::placeholder {
+    color: #888;
+}
+
+.join-btn {
+    border: none;
+    border-left: 2px solid #000;
+    background-color: transparent;
+    padding: 0 45px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.join-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Center Image (Hyedna l-background lbida w box-shadow) */
+.center-badge-image {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* Beddelna #fff b transparent */
+    box-shadow: none; /* Hyedna l-khal dyal l-dill */
+}
+
+.center-badge-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Au cover 3la hssab kifash bghiti sora tban */
+}
+
+/* ==========================================
+   CONTACT / COMMUNITY BANNER SECTION
+========================================== */
+.community-section {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto 20px auto;
+    display: flex;
+    align-items: center;
+    padding-left: 90px;
+}
+
+/* Badge rotante */
+.rotating-badge-wrapper {
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 250px;
+    height: 250px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rotating-text {
+    width: 100%;
+    height: 100%;
+    animation: spinText 18s linear infinite;
+}
+
+@keyframes spinText {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Icona centrale senza sfondo bianco */
+.center-badge-image {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.center-badge-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Scheda contatto */
+.community-card {
+    flex: 1;
+    border: 2px solid #000;
+    border-radius: 24px;
+    padding: 40px 40px 40px 160px;
+    background-color: #ffffff;
+}
+
+.community-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.community-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 24px;
+}
+
+/* Form e Input */
+.community-action-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.community-form {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    max-width: 420px;
+    width: 100%;
+}
+
+.email-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    color: #000;
+    min-width: 0;
+}
+
+.email-input::placeholder {
+    color: #888;
+}
+
+.join-btn {
+    border: none;
+    border-left: 2px solid #000;
+    background-color: transparent;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.join-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+/* الأنيمايشن فـ ملف CSS */
+
+.center-badge-image img {
+    /* الأنيمايشن كديرها كـ "wiggle" (هزة خفيفة) */
+    animation: wiggle 3s ease-in-out infinite;
+    /* كتحكم فـ سرعة وحركة الأنيمايشن */
+}
+
+/* تعريف الأنيمايشن */
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(10deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">KHADIJA Jamal © 2026</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="index.html">WORK</a>
+            <a href="index.html">ABOUT</a>
+<a href="pdf/cv.pdf" download="Khadija_Jamal_CV.pdf" class="nav-item">MY RESUME</a>             
+        </div>
+        <a href="#" class="connect-btn">CONNECT</a>
+    </nav>
+
+     
+
+    <main class="project-hero">
+        <h1 class="project-title" id="dynamic-title">GAME WORLD DESIGN</h1>
+
+        <div class="project-details-grid">
+            <div class="services-column">
+                <span class="pill-tag">SERVICES</span>
+                <ul class="services-list">
+                    <li id="dynamic-category">GAME DESIGN</li>
+                    <li>CREATIVE STRATEGY</li>
+                    <li>IDENTITY</li>
+                    <li>BRAND GUIDELINES</li>
+                </ul>
+            </div>
+
+            <div class="description-column">
+                <h2 class="sub-heading">COURT ICON, CULTURE MUSE.</h2>
+                <p class="description-text">
+                    We reimagined this iconic creative direction for a modern context, 
+                    building a dynamic visual world with style, depth, and bold character.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- BANNER IMAGE -->
+    <section class="banner-image-container">
+        <img id="dynamic-image" src="img/Video Games Animation GIF by FOU.gif" alt="Project Banner" class="full-banner-img">
+    </section>
+
+    <!-- SECTION FOR RELATED PROJECTS GRID -->
+    <section class="related-section">
+        <h3 class="related-title">SIMILAR WORKS</h3>
+        <div class="related-grid" id="related-grid">
+            <!-- التصاوير ديال نفس الفئة غايتزادوا هنا بـ JavaScript -->
+        </div>
+    </section>
+
+   <!-- BANNER IMAGE SECTION -->
+ 
+
+<!-- RELATED GALLERY SECTION -->
+<section class="related-section">
+    <div class="related-grid" id="related-grid">
+        <!-- التصاور كايتستفو هنا جوج بـ جوج ديناميكياً -->
+    </div>
+</section>
+
+<!-- INFINITE MARQUEE FOOTER -->
+<div class="marquee-container">
+    <div class="marquee-content">
+        <!-- Group 1 -->
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+
+        <!-- Group 2 (Duplicate for smooth infinite scroll) -->
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+        <div class="marquee-item">
+            <span>DESIGNER CREATIVE KHADIJA JAMAL</span>
+            <span class="icon">▲</span>
+        </div>
+    </div>
+</div>
+
+<!-- COMMUNITY BANNER SECTION -->
+ <!-- COMMUNITY / CONTACT BANNER SECTION -->
+<section class="community-section">
+    <!-- Rotating Badge Wrapper -->
+    <div class="rotating-badge-wrapper">
+        <svg class="rotating-text" viewBox="0 0 200 200">
+            <path id="textPath" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" fill="none" />
+            <text font-size="12" font-weight="900" letter-spacing="3.2">
+                <textPath href="#textPath" startOffset="0%">
+                    KHADIJA JAMAL • CREATIVE DESIGNER • KHADIJA JAMAL • 
+                </textPath>
+            </text>
+        </svg>
+
+        <div class="center-badge-image">
+            <img src="icon.img/gmail.png" alt="Khadija Jamal">
+        </div>
+    </div>
+
+    <!-- Contact Card -->
+    <div class="community-card">
+        <h2 class="community-title">GET IN TOUCH</h2>
+        <p class="community-subtitle">Have a project in mind? Drop your email below.</p>
+        
+        <div class="community-action-row">
+            <form class="community-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Your Email Address" class="email-input" required>
+                <button type="submit" class="join-btn">SEND</button>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    const projectsDatabase = {
+        "game-world": { title: "Game World Design", cat: "GAME DESIGN", img: "img/Video Games Animation GIF by FOU.gif" },
+        "neo-1": { title: "Neoclassical Aesthetics I", cat: "BRANDING", img: "img/téléchargement (1).jpeg" },
+        "neo-2": { title: "Neoclassical Aesthetics II", cat: "BRANDING", img: "img/téléchargement (3).jpeg" },
+        "neo-3": { title: "Neoclassical Aesthetics III", cat: "BRANDING", img: "img/téléchargement (4).jpeg" },
+        "dont-ctrl-v": { title: "Don't Be Ctrl V", cat: "BRANDING", img: "img/DON’T BE CTRL V⚪️🔴.jpeg" },
+        "pixel-snack": { title: "Retro Pixel Snack Attack", cat: "PIXEL ART", img: "img/🍕👾 RETRO PIXEL SNACK ATTACK.jpeg" },
+        "beliel-runner": { title: "Beliel Runner Arcade", cat: "PIXEL ART", img: "img/Beliel _ Runner arcade.jpeg" },
+        "pixel-retro": { title: "Pixel Retro Level", cat: "PIXEL ART", img: "img/téléchargement (5).jpeg" },
+        "arcade-sprites": { title: "Arcade Sprites", cat: "PIXEL ART", img: "img/téléchargement (6).jpeg" },
+        "keep-moving": { title: "Keep Moving Typography", cat: "EDITORIAL", img: "img/Keep Moving — Bold Black & White Typography Poster.jpeg" },
+        "editorial-1": { title: "Editorial Layout I", cat: "EDITORIAL", img: "img/téléchargement (7).jpeg" },
+        "editorial-2": { title: "Editorial Layout II", cat: "EDITORIAL", img: "img/téléchargement (8).jpeg" },
+        "high-contrast": { title: "High Contrast Poster", cat: "EDITORIAL", img: "img/téléchargement (2).jpeg" }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id') || "game-world";
+    const currentProject = projectsDatabase[projectId] || projectsDatabase["game-world"];
+
+    // تحديث البيانات الأساسية
+    document.getElementById('dynamic-title').innerText = currentProject.title;
+    document.title = currentProject.title + " - Project";
+    document.getElementById('dynamic-image').src = currentProject.img;
+    document.getElementById('dynamic-category').innerText = currentProject.cat;
+
+    // عرض الصور المتشابهة فـ Grid ديال 2 أفقياً
+    const relatedGrid = document.getElementById('related-grid');
+    if (relatedGrid) {
+        relatedGrid.innerHTML = "";
+        Object.keys(projectsDatabase).forEach(key => {
+            const item = projectsDatabase[key];
+            if (item.cat === currentProject.cat && key !== projectId) {
+                relatedGrid.innerHTML += `
+                    <a href="project-detail.html?id=${key}" class="related-card">
+                        <img src="${item.img}" alt="${item.title}">
+                    </a>
+                `;
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

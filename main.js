@@ -690,25 +690,30 @@ document.querySelectorAll('.image-wrapper').forEach(wrapper => {
         overlay.style.top = `${y}px`;
     });
 });
- 
- document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const waveOverlay = document.getElementById("waveOverlay");
     const links = document.querySelectorAll("a");
+
+    // إلا ما كاينش overlay فـ الصفحة، ما نطبقوش الـ script كاع باش ما يوقعش بلوكاج
+    if (!waveOverlay) return;
 
     links.forEach(link => {
         link.addEventListener("click", (e) => {
             const targetUrl = link.getAttribute("href");
 
-            // تأكد باللي الرابط كيدي لصفحة HTML تانية حقيقية ماشي JavaScript أو Anchor
-            if (
+            // نـتـأكـدو بـلـي الـرابط كـيدي لـ صفحة HTML حـقـيـقـيـة ومـاشـي زر أوعـنـصـر كـيـحـرك الـصفحة
+            const isExternalPage = 
                 targetUrl && 
                 targetUrl !== "#" &&
                 !targetUrl.startsWith("#") && 
                 !targetUrl.startsWith("javascript:") &&
                 !link.hasAttribute("download") &&
-                link.target !== "_blank"
-            ) {
-                e.preventDefault();
+                !link.hasAttribute("onclick") &&
+                link.target !== "_blank";
+
+            if (isExternalPage) {
+                e.preventDefault(); // نوقفو التنقل الفوري غير للروابط اللي كتديك لصفحة جديدة
+
                 waveOverlay.classList.add("active");
 
                 setTimeout(() => {
@@ -719,6 +724,7 @@ document.querySelectorAll('.image-wrapper').forEach(wrapper => {
     });
 });
 
+// حل مشكل الصفحة الكحلة فـ حالة الرجوع للخلف (Back Button)
 window.addEventListener("pageshow", () => {
     const waveOverlay = document.getElementById("waveOverlay");
     if (waveOverlay) {

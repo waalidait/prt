@@ -75,7 +75,7 @@
         ease: "power2.inOut"
     }, "+=0.5")
 .set("#imgBase", {
-        attr: { src: "img/animekahdija 1 (1).png" } // <-- Hna ddir l-chemin dyal l-tswira l-jdiida!
+        attr: { src: "img/kahdija anime.png" } // <-- Hna ddir l-chemin dyal l-tswira l-jdiida!
     })
     // 7. تحريك التصويرة لليمين وهي مخفية
     .set("#heroImageWrapper", {
@@ -731,3 +731,4 @@ window.addEventListener("pageshow", () => {
         waveOverlay.classList.remove("active");
     }
 });
+

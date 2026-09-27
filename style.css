@@ -454,3 +454,11 @@ body {
 .about-section.light-theme.active .flicker-letter {
     animation: lightBulbFlicker 1.8s forwards !important;
 }
+
+
+/* باش الـ Link ما يغيرش الألوان ولا الديزاين ديال الكارد */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}

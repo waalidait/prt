@@ -1,0 +1,844 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 25px 40px;
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 60px;
+}
+
+.logo a {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.connect-btn {
+    padding: 10px 24px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 3px 3px 0px #000;
+}
+
+/* HERO SECTION */
+.project-hero {
+    margin-bottom: 40px;
+}
+
+.project-title {
+    font-size: 6rem;
+    font-weight: 900;
+    line-height: 0.95;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.project-details-grid {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 40px;
+}
+
+.pill-tag {
+    display: inline-block;
+    border: 1.5px solid #000;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.services-list {
+    list-style: none;
+}
+
+.services-list li {
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.sub-heading {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.description-text {
+    font-size: 1.05rem;
+    color: #222;
+}
+
+/* MAIN BANNER & GALLERY (HNA FAYN KHASS YKONO TSWER LFOOQ) */
+.banner-image-container {
+    width: 100%;
+    margin: 40px 0;
+}
+
+.full-banner-img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.related-section {
+    margin: 60px 0;
+}
+
+.related-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+}
+
+.project-cover {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-cover {
+    transform: scale(1.04);
+}
+
+/* MARQUEE */
+.marquee-container {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 12px 0;
+    margin: 60px 0;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    animation: marqueeAnimation 18s linear infinite;
+}
+
+.marquee-item {
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+@keyframes marqueeAnimation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* CONTACT SECTION (LTEHT BUHDHA) */
+.community-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    padding: 40px 0;
+}
+
+.community-card {
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 550px;
+    text-align: center;
+}
+
+.community-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.community-subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.community-form {
+    display: flex;
+    border: 2px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.email-input {
+    flex: 1;
+    border: none;
+    padding: 12px 16px;
+    outline: none;
+}
+
+.join-btn {
+    border: none;
+    border-left: 2px solid #000;
+    background: #000;
+    color: #fff;
+    padding: 12px 25px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+/* ==========================================
+   PROJECT GALLERY STYLE (3 IMAGES)
+========================================== */
+.related-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.related-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+/* الشبكة لتوزيع 3 تصاور */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 تصاور فـ سطر واحد فـ الشاشات الكبيرة */
+    gap: 24px;
+}
+
+.related-card {
+    width: 100%;
+    height: 380px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000; /* Brutalist shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+.related-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* باش التصويرة تعمر الكارد بلا ما تتجبد */
+    display: block;
+}
+
+/* التجاوب مع الهواتف والتابليت */
+@media (max-width: 992px) {
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 تصاور فـ السطر فـ التابليت */
+    }
+}
+
+@media (max-width: 600px) {
+    .related-grid {
+        grid-template-columns: 1fr; /* تصويرة وحدة فـ السطر فـ التلفون */
+    }
+    .related-card {
+        height: 280px;
+    }
+}
+
+/* Container مجمع فـ الوسط بـ max-width صغير */
+.related-section {
+    width: 100%;
+    max-width: 750px; /* صغار بزاف مقارنة بالقبل */
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.related-title {
+    font-size: 1.4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Grid فيه 2 عناصر فـ السطر مع gap نقي */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* مسافة نقية ومصغرة بين التصاور */
+    justify-content: center;
+}
+
+.related-card {
+    width: 100%;
+    height: 220px; /* Height مصغرة ومريحة */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0px #000;
+}
+
+.related-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* التصويرة 3 تهبط لتحت فـ الوسط وبنفس الـ Height المصغر */
+.related-card:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 280px; /* Height مصغرة للتصويرة العريضة */
+}
+
+/* Responsive للتلفونات */
+@media (max-width: 600px) {
+    .related-section {
+        max-width: 100%;
+    }
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    .related-card, 
+    .related-card:nth-child(3) {
+        height: 200px;
+    }
+}
+/* التصويرة الثالثة (الكبيرة لتحت) */
+.related-card:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto; /* كايخلي الطول يتقاد تلقائياً مع أبعاد التصويرة */
+    min-height: 480px; /* كبرناها فـ الطول باش تبان واضحة */
+}
+
+.related-card:nth-child(3) img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* كايخلي التصويرة تبان كاملا 100% بلا ما يتقطع منها حتا شي جزء */
+ }
+ .related-card {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* كايخلي الصورة تبان كاملة بلا تقطاع */
+     /* (اختياري) لون الخلفية فالحالات لي كيبانو فيها الفراغات */
+}
+
+/* Lightbox Container (الخلفية المظلمة) */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-in-out;
+}
+
+/* التصويرة وهي مكبرة وسط الشاشة */
+.lightbox-content {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+     
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+}
+
+/* زر إغلاق (X) */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+    user-select: none;
+}
+
+.lightbox-close:hover {
+    color: #ff4d4d;
+    transform: scale(1.15);
+}
+/* 1. FIX L-BANNER L-KBIR (BANNER IMAGE) */
+.banner-image-container {
+    width: 100%;
+    max-width: 1000px; /* Limit l-width bsh ma t-ji-sh kbiira bezzaf */
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.full-banner-img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain; /* Bsh t-ban tswira kamla bla zoom */
+    border-radius: 16px;
+    display: block;
+    background-color: #000000; /* Background light ila bqaw khawyeen */
+}
+ /* Container dyal l-gallery */
+.related-section {
+    width: 100%;
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* L-Grid fih 2 dyal l-columns l-foq */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 tsawer f l-ffoq */
+    gap: 20px;
+}
+
+/* L-Cards l-olya w l-tanya */
+.related-card {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.related-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Katchof l-tswira kamla بلا ما t-zoom */
+    padding: 12px;
+}
+
+/* L-Tswira l-3al l-yemen (nth-child 3) ghadi t-hbat l-teht w t-akhod l-3ard kamel */
+.related-card:nth-child(3) {
+    grid-column: 1 / -1; /* Katkhodha t-akhod l-sftir kamel */
+    height: 350px; /* Height mo3tadila bash ma tji-sh zoomed bezzaf */
+}
+.marquee-container {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+    margin: 60px 0;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: marqueeAnimation 15s linear infinite;
+}
+
+.marquee-item {
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@keyframes marqueeAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* كتحرك نصف المسافة باش تبان مستمرة */
+    }
+}
+/* Responsive l-mobile */
+@media (max-width: 600px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    .related-card, 
+    .related-card:nth-child(3) {
+        height: 250px;
+    }
+}
+
+/* Responsive l-mobile */
+@media (max-width: 768px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    .related-card, 
+    .related-card:nth-child(3) {
+        height: 260px;
+    }
+}
+/* Animation فتح الشاشة */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">KHADIJA JAMAL © 2026</a></div>
+        <div class="nav-links">
+            <a href="index.html#home">HOME</a>
+            <a href="index.html#work">WORK</a>
+            <a href="index.html#about">ABOUT</a>
+        </div>
+        <a href="#contact" class="connect-btn">CONNECT</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <main class="project-hero">
+        <h1 class="project-title">PROJECT TITLE</h1>
+        <div class="project-details-grid">
+            <div class="services-column">
+                <span class="pill-tag">SERVICES</span>
+                <ul class="services-list">
+                    <li>UI/UX DESIGN</li>
+                    <li>CREATIVE DIRECTION</li>
+                    <li>BRANDING</li>
+                </ul>
+            </div>
+            <div class="description-column">
+                <h2 class="sub-heading">SUBTITLE HERE</h2>
+                <p class="description-text">Project description text goes here. Keep it short, brutalist, and modern.</p>
+            </div>
+        </div>
+    </main>
+
+     <!-- 1. L-COVER L-KBIRA (Image 1) -->
+<section class="banner-image-container">
+    <img id="main-banner-img" src="img/Gemini_Generated_Image_af1e0uaf1e0uaf1e.jpeg" alt="Main Project Banner" class="full-banner-img">
+</section>
+ 
+ <section class="related-section">
+    <h3 class="related-title">PROJECT GALLERY</h3>
+    <div class="related-grid" id="project-gallery">
+        <div class="related-card">
+            <img src="img-pr/ChatGPT Image 25 sept. 2026, 20_15_38.png" alt="Project 1" onclick="openLightbox(this)">
+        </div>
+        <div class="related-card">
+            <img src="img-pr/ChatGPT Image 25 sept. 2026, 20_23_51.png" alt="Project 2" onclick="openLightbox(this)">
+        </div>
+        <div class="related-card">
+            <img src="img-pr/ChatGPT Image 25 sept. 2026, 20_30_53.png" alt="Project 3" onclick="openLightbox(this)">
+        </div>
+    </div>
+</section>
+
+     <!-- MARQUEE -->
+<div class="marquee-container">
+    <div class="marquee-content">
+        <!-- المجموعة الأولى -->
+        <div class="marquee-item">DESIGNER ▲</div>
+        <div class="marquee-item">KHADIJA JAMAL ▲</div>
+        <div class="marquee-item">DESIGNER ▲</div>
+        <div class="marquee-item">KHADIJA JAMAL ▲</div>
+
+        <!-- تكرار نفس المجموعة باش يجي التحريك مستمر بلا فراغ (Infinite Loop) -->
+        <div class="marquee-item">DESIGNER ▲</div>
+        <div class="marquee-item">KHADIJA JAMAL ▲</div>
+        <div class="marquee-item">DESIGNER ▲</div>
+        <div class="marquee-item">KHADIJA JAMAL ▲</div>
+    </div>
+</div>
+
+    <!-- 3. CONTACT SECTION (GET IN TOUCH BO3DHAA LTEHT) -->
+    <section class="community-section" id="contact">
+        <div class="community-card">
+            <h2 class="community-title">GET IN TOUCH</h2>
+            <p class="community-subtitle">Have a project in mind? Drop your email below.</p>
+            <form class="community-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Your Email Address" class="email-input" required>
+                <button type="submit" class="join-btn">SEND</button>
+            </form>
+        </div>
+    </section>
+    <!-- Lightbox / Modal كايتكبر فيها التصويرة -->
+<div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg">
+</div>
+
+
+  <script>
+    // Object كايجمع كاع الـ 13 مشروع كلياً
+const projectsData = {
+    "1": {
+        title: "GAME WORLD DESIGN",
+        subtitle: "INTERACTIVE GAME ENVIRONMENT",
+        services: ["GAME DESIGN", "2D ANIMATION", "MOTION GRAPHICS"],
+        description: "Interactive game environment concept with dynamic character animations and fluid motion graphics.",
+        banner: "img/Video Games Animation GIF by FOU.gif",
+        gallery: [
+            "img/Video Games Animation GIF by FOU.gif"
+        ]
+    },
+    "2": {
+        title: "ANIWATCH STREAMING PLATFORM",
+        subtitle: "ANIME STREAMING WEBSITE",
+        services: ["UI/UX DESIGN", "WEB DEVELOPMENT", "FRONTEND"],
+        description: "Full responsive design and interactive web interface for an online anime streaming platform.",
+        banner: "img/Gemini_Generated_Image_af1e0uaf1e0uaf1e.jpeg",
+        gallery: [
+            "img-pr/ChatGPT Image 25 sept. 2026, 20_15_38.png",
+            "img-pr/ChatGPT Image 25 sept. 2026, 20_23_51.png",
+            "img-pr/ChatGPT Image 25 sept. 2026, 20_30_53.png"
+        ]
+    },
+    "3": {
+        title: "FITNESS YOUTH APP",
+        subtitle: "HEALTH & WORKOUT TRACKER",
+        services: ["UI/UX DESIGN", "MOBILE APP", "BRANDING"],
+        description: "Modern fitness application interface designed for tracking workouts and activity metrics.",
+        banner: "img/Fitness Yourth.jpeg",
+        gallery: [
+            "img-pr2/ChatGPT Image 26 sept. 2026, 20_12_04.png",
+            "img-pr2/ChatGPT Image 26 sept. 2026, 22_11_23.png",
+            "img-pr2/ChatGPT Image 26 sept. 2026, 19_00_53.png"
+        ]
+    },
+    "4": {
+        title: "LUXURY CAR RENTAL",
+        subtitle: "CAR RENTAL PLATFORM",
+        services: ["UI/UX DESIGN", "WEB DEVELOPMENT", "CAR RENTAL"],
+        description: "Modern, high-performance web interface designed for luxury car rentals and online vehicle booking management.",
+        banner: "img/Silence Is the Loudest Statement.jpeg",
+        gallery: [
+            "img-pr3/ChatGPT Image 27 sept. 2026, 03_38_41.png",
+            "img-pr3/ChatGPT Image 27 sept. 2026, 03_39_21.png",
+            "img-pr3/ChatGPT Image 27 sept. 2026, 03_39_39.png"
+        ]
+    },
+    "5": {
+        title: "CREATIVE DASHBOARD 2",
+        subtitle: "DARK MODE INTERFACE",
+        services: ["UI DESIGN", "WEB DESIGN"],
+        description: "Dark-themed sleek user interface with purple neon accent graphics.",
+        banner: "img/Frame 5.png",
+        gallery: [
+            "img-pr4/ChatGPT Image 27 sept. 2026, 03_47_01.png",
+            "img-pr4/ChatGPT Image 27 sept. 2026, 03_49_41.png",
+            "img-pr4/ChatGPT Image 27 sept. 2026, 03_51_49.png"
+        ]
+    },
+    "6": {
+        title: "RETRO PIXEL SNACK ATTACK",
+        subtitle: "8-BIT ARCADE GAME",
+        services: ["PIXEL ART", "RETRO GAMING"],
+        description: "Nostalgic 8-bit snack attack arcade assets and character sprites.",
+        banner: "img/🍕👾 RETRO PIXEL SNACK ATTACK.jpeg",
+        gallery: [
+            "img/🍕👾 RETRO PIXEL SNACK ATTACK.jpeg"
+        ]
+    },
+    "7": {
+        title: "RUNNER ARCADE GAME",
+        subtitle: "ENDLESS RUNNER GAME",
+        services: ["PIXEL ART", "SPRITE ANIMATION"],
+        description: "Pixel art endless runner arcade levels, obstacle designs, and character animations.",
+        banner: "img/Beliel _ Runner arcade.jpeg",
+        gallery: [
+            "img/Beliel _ Runner arcade.jpeg"
+        ]
+    },
+    "8": {
+        title: "PIXEL ASSETS COLLECTION 1",
+        subtitle: "GAME ASSETS & TILES",
+        services: ["PIXEL ART", "GAME ASSETS"],
+        description: "Detailed pixel environments, tilesets, and retro gaming UI components.",
+        banner: "img/téléchargement (5).jpeg",
+        gallery: [
+            "img/téléchargement (5).jpeg"
+        ]
+    },
+    "9": {
+        title: "PIXEL ASSETS COLLECTION 2",
+        subtitle: "ARCADE CHARACTER DESIGN",
+        services: ["PIXEL ART", "ILLUSTRATION"],
+        description: "Custom pixel art retro game characters and pixel typography concepts.",
+        banner: "img/téléchargement (6).jpeg",
+        gallery: [
+            "img/téléchargement (6).jpeg"
+        ]
+    },
+    "10": {
+        title: "KEEP MOVING POSTER",
+        subtitle: "BOLD TYPOGRAPHY POSTER",
+        services: ["EDITORIAL", "TYPOGRAPHY", "POSTER ART"],
+        description: "High-contrast black & white Swiss-style poster layout focusing on bold typography.",
+        banner: "img/Keep Moving — Bold Black & White Typography Poster.jpeg",
+        gallery: [
+            "img/Keep Moving — Bold Black & White Typography Poster.jpeg"
+        ]
+    },
+    "11": {
+        title: "EDITORIAL MAGAZINE SPREAD 1",
+        subtitle: "PRINT & EDITORIAL LAYOUT",
+        services: ["EDITORIAL", "LAYOUT DESIGN"],
+        description: "Modern editorial magazine spread design with asymmetric text grids.",
+        banner: "img/téléchargement (7).jpeg",
+        gallery: [
+            "img/téléchargement (7).jpeg"
+        ]
+    },
+    "12": {
+        title: "EDITORIAL MAGAZINE SPREAD 2",
+        subtitle: "MINIMALIST TYPOGRAPHY",
+        services: ["EDITORIAL", "TYPOGRAPHY"],
+        description: "Minimalist fashion magazine spread with clean editorial hierarchy.",
+        banner: "img/téléchargement (8).jpeg",
+        gallery: [
+            "img/téléchargement (8).jpeg"
+        ]
+    },
+    "13": {
+        title: "EDITORIAL POSTER ART",
+        subtitle: "CONTEMPORARY PRINT ART",
+        services: ["POSTER ART", "GRAPHIC DESIGN"],
+        description: "Experimental typography poster with contemporary brut-style graphic composition.",
+        banner: "img/téléchargement (2).jpeg",
+        gallery: [
+            "img/téléchargement (2).jpeg"
+        ]
+    }
+};
+
+// 1. قراءة الـ ID من الـ URL (مثلاً: project-detail2.html?id=2)
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get('id') || '1'; // افتراضياً المشروع الأول
+
+// 2. اختيار المشروع المطابق
+const currentProject = projectsData[projectId];
+
+if (currentProject) {
+    // تحديث النصوص
+    document.querySelector('.project-title').textContent = currentProject.title;
+    document.querySelector('.sub-heading').textContent = currentProject.subtitle;
+    document.querySelector('.description-text').textContent = currentProject.description;
+    document.querySelector('.full-banner-img').src = currentProject.banner;
+
+    // تحديث الخدمات (Services)
+    const servicesList = document.querySelector('.services-list');
+    if (servicesList) {
+        servicesList.innerHTML = '';
+        currentProject.services.forEach(service => {
+            servicesList.innerHTML += `<li>${service}</li>`;
+        });
+    }
+
+    // تحديث الـ Gallery بالصور الداخلية المخصصة
+    const galleryContainer = document.getElementById('project-gallery');
+    if (galleryContainer) {
+        galleryContainer.innerHTML = ''; 
+
+        currentProject.gallery.forEach((imgUrl) => {
+            const cardHtml = `
+                <div class="related-card">
+                    <img src="${imgUrl}" alt="${currentProject.title}" onclick="openLightbox(this)">
+                </div>
+            `;
+            galleryContainer.innerHTML += cardHtml;
+        });
+    }
+}
+
+// 1. دالة فتح الـ Lightbox وتكبير الصورة
+function openLightbox(imgElement) {
+    const modal = document.getElementById('imageLightbox');
+    const modalImg = document.getElementById('lightboxImg');
+    
+    if (modal && modalImg) {
+        modalImg.src = imgElement.src; // كياخد نفس رابط الصورة لي تكليكات
+        modal.style.display = 'flex';   // كيبين الـ Modal فـ الوسط
+    }
+}
+
+// 2. دالة إغلاق الـ Lightbox
+function closeLightbox() {
+    const modal = document.getElementById('imageLightbox');
+    if (modal) {
+        modal.style.display = 'none'; // كايخفي الـ Modal
+    }
+}
+
+// 3. إغلاق الـ Lightbox بزر ESC من الكلافيي (اختياري ونقي)
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeLightbox();
+    }
+});
+  </script>
+</body>
+</html>

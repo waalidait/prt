@@ -870,44 +870,12 @@ body.dark-theme .close-btn {
     color: #ff69b4 !important;
 }
 
-/* Container dyal l-ketba l-kbira */
-.footer-big-branding {
-    text-align: center;
-    width: 100%;
-    line-height: 0.8;
-    overflow: hidden;
-    padding-top: 20px;
-}
-
-/* Base State: L-ketba hābṭa l-taḥt w m-khbya (opacity: 0) */
-.reveal-text {
-    display: block;
-    font-size: 13vw;
-    font-weight: 900;
-    color: #1a1a1a;
-    letter-spacing: -3px;
-    white-space: nowrap;
-    
-    opacity: 0;
-    transform: translateY(100px) scale(0.9);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Active State: Mni ki-wṣṣel l-user l-tammā, kat-ṭle3 w kat-bān */
-.reveal-text.show-text {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    color: #aeaeae8a;
-     
-}
-
-.footer-hero-section {
+ .footer-hero-section {
     text-align: center;
     margin-bottom: 100px;
 }
 
-/* Masking container bach l-kelmat y-ṭel3o mn taḥt l-ard */
+/* Masking container */
 .reveal-word {
     overflow: hidden;
     margin: 0;
@@ -929,7 +897,7 @@ body.dark-theme .close-btn {
     transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* State Mni kat-trigga l-animation f l-Scroll */
+/* Active State f Scroll */
 .footer-hero-section.active .reveal-word span {
     opacity: 1;
     transform: translateY(0) rotate(0deg);
@@ -940,7 +908,7 @@ body.dark-theme .close-btn {
     transform: translateY(0) scale(1);
 }
 
-/* Delay staggered l-kull kelma bach y-ṭel3o b-n-nawba (Wave Effect) */
+/* Delay staggered */
 .footer-hero-section.active .hero-subtext span:nth-child(1) { transition-delay: 0.1s; }
 .footer-hero-section.active .hero-subtext span:nth-child(2) { transition-delay: 0.2s; }
 
@@ -950,3 +918,35 @@ body.dark-theme .close-btn {
 .footer-hero-section.active .hero-maintext span:nth-child(4) { transition-delay: 0.6s; }
 
 .footer-hero-section.active .reveal-btn { transition-delay: 0.75s; }
+
+ .footer-big-branding {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+.reveal-text {
+    display: block;
+    /* N99ṣna l-vw mn 7.5vw l 5.8vw bach t-hezz smyya kamla */
+    font-size: clamp(1.8rem, 5.8vw, 7.5rem); 
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: -3px; /* Ziyyer l-ḥurūf shwiya f l-3erḍ */
+    white-space: nowrap;
+    width: 100%;
+    
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                color 0.8s ease;
+}
+
+/* Active State f Scroll */
+.reveal-text.show-text {
+    opacity: 1;
+    transform: translateY(0);
+    color: #aeaeae8a;
+}

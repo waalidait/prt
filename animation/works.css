@@ -98,10 +98,10 @@
     will-change: transform;
 }
 
-.project-card.card-1 { z-index: 4; background: #000000; border: 2px solid #333333; }
-.project-card.card-2 { z-index: 3; background: #760abe; border: 2px solid #000000; }
-.project-card.card-3 { z-index: 2; background: #ffb703; border: 2px solid #ffc300; }
-.project-card.card-4 { z-index: 1; background: #785F47; border: 2px solid #b7b7a4; }
+.project-card.card-1 { z-index: 4; background: #000000; border: 2px solid #ffffff; }
+.project-card.card-2 { z-index: 3; background: #2014c7; border: 2px solid #000000; }
+.project-card.card-3 { z-index: 2; background: #1ec7da; border: 2px solid #285fe9; }
+.project-card.card-4 { z-index: 1; background: #f19743; border: 2px solid #000000; }
 
 .project-card.card-1 h3, .project-card.card-1 p, .project-card.card-1 .card-num,
 .project-card.card-2 h3, .project-card.card-2 p, .project-card.card-2 .card-num,
@@ -308,87 +308,7 @@ html.rose-mode .curated-desc { color: #ffffff !important; opacity: 0.85; }
 /* ==========================================
    NEON PINK BUTTON STYLE
 ========================================== */
-
-.see-all-container {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.3) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    z-index: 0 !important;
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                opacity 0.5s ease !important;
-    width: max-content;
-}
-
-.see-all-container.show-btn {
-    opacity: 1 !important;
-    transform: translate(-50%, -50%) scale(1) !important;
-    pointer-events: auto !important;
-    z-index: 999 !important;
-}
-
-.see-all-final-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    padding: 18px 42px;
-    background: #0f0f11;
-    color: #ffffff !important;
-    font-size: 0.95rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-decoration: none;
-    border-radius: 100px;
-    border: 2px solid #FF1493;
-    box-shadow: 0 0 20px rgba(255, 20, 147, 0.35), 
-                inset 0 0 12px rgba(255, 20, 147, 0.15);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-}
-
-/* النص و السهم */
-.see-all-final-btn span {
-    position: relative;
-    z-index: 2;
-}
-
-.see-all-final-btn svg {
-    position: relative;
-    z-index: 2;
-    stroke: #FF1493;
-    transition: transform 0.3s ease, stroke 0.3s ease;
-}
-
-/* تأثير الـ Hover */
-.see-all-final-btn:hover {
-    background: #FF1493;
-    color: #ffffff !important;
-    border-color: #FF1493;
-    box-shadow: 0 0 35px rgba(255, 20, 147, 0.8),
-                0 0 60px rgba(255, 20, 147, 0.4);
-    transform: translateY(-3px) scale(1.03);
-}
-
-.see-all-final-btn:hover svg {
-    stroke: #ffffff;
-    transform: translateX(6px);
-}
-
-/* تأثير Pulsing Glow خفيف فـ الخلفية */
-@keyframes btnPulse {
-    0% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.35); }
-    50% { box-shadow: 0 0 30px rgba(255, 20, 147, 0.6); }
-    100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.35); }
-}
-
-.see-all-container.show-btn .see-all-final-btn {
-    animation: btnPulse 3s infinite ease-in-out;
-}
+ 
 
 html {
     scroll-behavior: smooth;
@@ -399,4 +319,52 @@ html {
     height: 100%;
     object-fit: contain; /* كايخلي الصورة تبان كاملة بلا تقطاع */
     background-color: #000000; /* (اختياري) لون الخلفية فالحالات لي كيبانو فيها الفراغات */
+}
+
+/* Card 5: Lon wahed fathe dyal t-tabi3a (Sage / Soft Mint) */
+.card-5 {
+    background-color:   #3b6e63!important; /* Khder tabi3i fathe w-mriyeh */
+    border: 1px solid   #254e45 !important;
+}
+
+/* L-Nmra (05) b-lon fathe w-m9add */
+.card-5 .card-num {
+    color: #6ee7b7 !important; /* Khder fathe mniwer */
+}
+
+/* L-3onwan (H3) */
+.card-5 .card-info h3 {
+    color: #ffffff !important;
+}
+
+/* Les Tags */
+.card-5 .card-tags span {
+    background-color: #2d544b !important;
+    color: #a7f3d0 !important;
+    border: 1px solid #3b6e63 !important;
+}
+
+#page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 150vh; /* T-zadt f-l-toul باش t-ghotti l-screen kamla */
+    background-color: #000000;
+    z-index: 99999;
+    pointer-events: none;
+    
+    /* Mkhbba l-teht f-l-awwal */
+    transform: translateY(100%);
+    transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+    
+    /* Curved Top (Moja f l-fok) */
+    border-top-left-radius: 50% 20%;
+    border-top-right-radius: 50% 20%;
+}
+
+/* Class mni kat-tla3 l-moja */
+#page-transition-overlay.active {
+    /* translateY(-20%) kat-khlli l-moja t-fout l-fok dyal l-écran باش l-khal y-ghotti كلشي 100% */
+    transform: translateY(-20%) !important;
 }

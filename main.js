@@ -732,3 +732,36 @@ window.addEventListener("pageshow", () => {
     }
 });
 
+ document.addEventListener('DOMContentLoaded', () => {
+    const cardLinks = document.querySelectorAll('.cards-stack-wrapper a');
+    const overlayElement = document.getElementById('page-transition-overlay');
+
+    cardLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const destinationUrl = this.getAttribute('href');
+
+            if (overlayElement) {
+                // Zid class active باش t-tla3 l-moja l-fok
+                overlayElement.classList.add('active');
+
+                // Tsna 700ms htal t-ghotti l-moja l-screen kamla
+                setTimeout(() => {
+                    window.location.href = destinationUrl;
+                }, 1000);
+            } else {
+                window.location.href = destinationUrl;
+            }
+        });
+    });
+});
+
+// Solution dyal mushkil l-écran l-kahl mni kat-rje3 b-l-browser (Back Button)
+window.addEventListener('pageshow', (event) => {
+    const overlayElement = document.getElementById('page-transition-overlay');
+    if (overlayElement) {
+        // Haka mni kat-rje3 l-page, l-khal kiy-hbat l-teht f-blasshto fawran
+        overlayElement.classList.remove('active');
+        overlayElement.style.transform = 'translateY(100%)';
+    }
+});

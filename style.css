@@ -1,6 +1,9 @@
  @import url("about-me.css");
  @import url("animation/works.css");
  @import url("animation/icon.css");
+  @import url("animation/erreur.css");
+
+
  
   body {
     background-color: #0d0d0d;
@@ -461,4 +464,51 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
+}
+/* 1. ضبط المربع الحاوي للصور */
+.card-preview-grid .grid-item {
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #0f0f0f; /* لون خلفية نقي إلا بقاو جناب خاويين */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* مسافة داخلية باش الصورة تبعد على الحواشي وما تتلاصقش */
+}
+
+/* 2. ضبط الصور باش تبان كاملة 100% بلا زوم وتقطاع */
+.card-preview-grid .grid-item img {
+    width: 100%;
+    height: 100%;
+    max-height: 180px; /* الارتفاع المناسب */
+    object-fit: contain !important; /* هذا هو السر لي كايخلي الصورة تبان كاملة */
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* 3. إضافة تأثير خفيف وجميل عند إمرارة الفأرة (Hover) */
+.card-preview-grid .grid-item:hover img {
+    transform: scale(1.03);
+}
+
+#page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120vh; /* Zdnaha f-l-toul bach t-ghi3 l-screen b-l-curved edge */
+    background-color: #000000;
+    z-index: 9999;
+    pointer-events: none;
+    transform: translateY(100%);
+    /* Had border-radius hya li kat-3ti l-mousha (Wave Effect) */
+    border-top-left-radius: 50% 20%;
+    border-top-right-radius: 50% 20%;
+    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Mni y-tla3 l-khal, l-curvation kat-tsawweb */
+#page-transition-overlay.active {
+    transform: translateY(-10%);
 }

@@ -765,3 +765,83 @@ window.addEventListener('pageshow', (event) => {
         overlayElement.style.transform = 'translateY(100%)';
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const footer = document.querySelector('.site-footer');
+
+    if (!footer) return;
+
+    // IntersectionObserver bach y-triggi mni ki-bān l-footer
+    const observerOptions = {
+        root: null,
+        threshold: 0.1 // Ki-t-declencha ghīr y-bān 10% mn l-footer
+    };
+
+    const siteThemeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Background dyal l-site kamel ki-rje3 kḥel
+                document.body.classList.add('dark-theme');
+            } else {
+                // Mni ki-rje3 y-tle3 l-fō9, l-site ki-rje3 abyaḍ
+                document.body.classList.remove('dark-theme');
+            }
+        });
+    }, observerOptions);
+
+    siteThemeObserver.observe(footer);
+});
+
+window.addEventListener('scroll', () => {
+    const bigText = document.querySelector('.marquee-track');
+    if (!bigText) return;
+
+    const scrollPos = window.scrollY;
+    // Dynamic parallax shift for design depth
+    bigText.style.transform = `translateX(${-scrollPos * 0.15}px)`;
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const bigText = document.querySelector('.reveal-text');
+
+    if (!bigText) return;
+
+    // IntersectionObserver bach y-triggi ghīr t-wṣṣel l-ketba f l-screen
+    const textObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Mni kat-wṣṣel l-tammā -> Kat-ṭle3 w kat-bān
+                bigText.classList.add('show-text');
+            } else {
+                // Ila rje3ti ṭla3ti l-fō9 -> Kat-rje3 t-khbba
+                bigText.classList.remove('show-text');
+            }
+        });
+    }, {
+        threshold: 0.2 // Kat-declencha ghīr y-bān 20% mn l-area dyal l-ketba
+    });
+
+    textObserver.observe(bigText);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const heroSection = document.querySelector('.footer-hero-section');
+
+    if (!heroSection) return;
+
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Ghīr t-wṣṣel l-3ndha -> Kat-declencha l-animation kelma b kelma
+                heroSection.classList.add('active');
+            } else {
+                // Mni kat-rje3 t-ṭle3 l-fō9 -> Kat-rje3 t-khbba bach t-3awud t-animat
+                heroSection.classList.remove('active');
+            }
+        });
+    }, {
+        threshold: 0.25 // Kat-starti mni ki-bān 25% mn l-section
+    });
+
+    heroObserver.observe(heroSection);
+});

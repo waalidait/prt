@@ -512,3 +512,441 @@ body {
 #page-transition-overlay.active {
     transform: translateY(-10%);
 }
+
+/* Background Kehla & General Setup */
+.site-footer {
+    background-color: #000000 !important;
+    color: #ffffff;
+    padding: 100px 40px 0 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 1. Hero Text Section */
+.footer-hero-section {
+    text-align: center;
+    margin-bottom: 120px;
+}
+
+.hero-subtext {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #666666;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.hero-maintext {
+    font-size: 6rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin: -10px 0 30px 0;
+    line-height: 0.95;
+    letter-spacing: -3px;
+}
+
+.book-call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 12px 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.book-call-btn:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
+
+.phone-icon-circle {
+    background-color: #000000;
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2. Grid Links */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto 60px auto;
+}
+
+.footer-col h4 {
+    font-size: 0.85rem;
+    color: #777777;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #ff69b4;
+}
+
+.contact-info li a {
+    text-transform: none;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+
+.legal-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legal-links a {
+    color: #666666;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.legal-links a:hover {
+    color: #ffffff;
+}
+
+/* 3. Social Media Icons */
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.social-box {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #222222;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-box:hover {
+    border-color: #ffffff;
+    background-color: #111111;
+    transform: translateY(-2px);
+}
+
+/* 4. Copyright */
+.footer-copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555555;
+    margin-bottom: 40px;
+}
+
+/* 5. Giant Watermark Text (KHADIJA JAMAL) */
+.footer-big-branding {
+    text-align: center;
+    width: 100%;
+    line-height: 0.8;
+    pointer-events: none;
+    user-select: none;
+}
+
+.footer-big-branding span {
+    font-size: 13.5vw; /* Scaling automatic m3a size dyal screen */
+    font-weight: 900;
+    color: #161616; /* Kḥel fatih shwiya bach y-jī watermark f l-kḥel */
+    letter-spacing: -4px;
+    display: block;
+    white-space: nowrap;
+}
+
+/* Responsive dyal Mobile */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .hero-subtext {
+        font-size: 3rem;
+    }
+    
+    .hero-maintext {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* Transition smooth dyal l-background dyal l-page kamla */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Class katzad b JS mni ki-wṣṣel l-user l-footer */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* CSS dyal l-footer */
+.site-footer {
+    background-color: transparent !important; /* Bach takhod background dyal body */
+    color: #ffffff;
+    padding: 100px 40px 0 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Transition smooth 3la l-site kamel */
+body, 
+section, 
+header, 
+nav, 
+main {
+    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base state (Mni katkon f l-foq) */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark Theme State (Mni ki-wssel l-user l-footer) */
+body.dark-theme,
+body.dark-theme section,
+body.dark-theme header,
+body.dark-theme nav,
+body.dark-theme main {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* Ela kanou 3ndak cards b-background abyaḍ, y-t-ḥwwlo l-kḥel aw dark grey */
+body.dark-theme .popup-window {
+    background-color: #111111 !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+    box-shadow: 8px 8px 0px #ffffff !important;
+}
+
+body.dark-theme .window-bar {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+body.dark-theme .control-btn, 
+body.dark-theme .close-btn {
+    color: #000000 !important;
+}
+
+/* Background & Section Base */
+.site-footer {
+    position: relative;
+    background-color: transparent !important;
+    color: #ffffff;
+    padding: 100px 40px 0 40px;
+    overflow: hidden;
+}
+
+/* Background Design Grid (Figma / CAD Canvas aesthetic) */
+.design-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 0;
+}
+
+.footer-hero-section,
+.footer-grid,
+.footer-socials,
+.footer-copyright,
+.footer-big-branding {
+    position: relative;
+    z-index: 1;
+}
+
+/* Big Animated Branding Text */
+.footer-big-branding {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    white-space: nowrap;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: marqueeScroll 20s linear infinite;
+}
+
+.animated-text {
+    font-size: 13vw;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #1a1a1a;
+    transition: color 0.4s ease, text-shadow 0.4s ease, transform 0.4s ease;
+}
+
+/* Outline Text Effect (Figma Vector look) */
+.animated-text.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 1.5px #262626;
+}
+
+/* Hover Effect 3ndha 3ala9a b Design Lighting */
+.footer-big-branding:hover .animated-text {
+    color: #ffffff;
+    text-shadow: 0 0 30px rgba(255, 105, 180, 0.4), 0 0 60px rgba(255, 105, 180, 0.2);
+}
+
+.footer-big-branding:hover .animated-text.outline-text {
+    -webkit-text-stroke: 1.5px #ff69b4;
+}
+
+/* Continuous Horizontal Infinite Marquee Animation */
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Hover Glow 3la les Social Boxes */
+.social-box:hover {
+    border-color: #ff69b4 !important;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    color: #ff69b4 !important;
+}
+
+/* Container dyal l-ketba l-kbira */
+.footer-big-branding {
+    text-align: center;
+    width: 100%;
+    line-height: 0.8;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+/* Base State: L-ketba hābṭa l-taḥt w m-khbya (opacity: 0) */
+.reveal-text {
+    display: block;
+    font-size: 13vw;
+    font-weight: 900;
+    color: #1a1a1a;
+    letter-spacing: -3px;
+    white-space: nowrap;
+    
+    opacity: 0;
+    transform: translateY(100px) scale(0.9);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Active State: Mni ki-wṣṣel l-user l-tammā, kat-ṭle3 w kat-bān */
+.reveal-text.show-text {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    color: #aeaeae8a;
+     
+}
+
+.footer-hero-section {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* Masking container bach l-kelmat y-ṭel3o mn taḥt l-ard */
+.reveal-word {
+    overflow: hidden;
+    margin: 0;
+}
+
+.reveal-word span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(110%) rotate(4deg);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Button reveal */
+.reveal-btn {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* State Mni kat-trigga l-animation f l-Scroll */
+.footer-hero-section.active .reveal-word span {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+}
+
+.footer-hero-section.active .reveal-btn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Delay staggered l-kull kelma bach y-ṭel3o b-n-nawba (Wave Effect) */
+.footer-hero-section.active .hero-subtext span:nth-child(1) { transition-delay: 0.1s; }
+.footer-hero-section.active .hero-subtext span:nth-child(2) { transition-delay: 0.2s; }
+
+.footer-hero-section.active .hero-maintext span:nth-child(1) { transition-delay: 0.3s; }
+.footer-hero-section.active .hero-maintext span:nth-child(2) { transition-delay: 0.4s; }
+.footer-hero-section.active .hero-maintext span:nth-child(3) { transition-delay: 0.5s; }
+.footer-hero-section.active .hero-maintext span:nth-child(4) { transition-delay: 0.6s; }
+
+.footer-hero-section.active .reveal-btn { transition-delay: 0.75s; }

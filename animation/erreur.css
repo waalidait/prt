@@ -300,3 +300,109 @@
     right: -30px;
     transform: rotate(20deg);
 }
+
+/* Base Style dyal les 2 Floating Icons */
+.space-floating-icon {
+    position: absolute;
+    width: 120px; /* Tamaño m9add w baayen */
+    height: auto;
+    z-index: 99;  /* Bach y-kono fo9 les cards */
+    pointer-events: auto; /* Bach y-kono interactive */
+    cursor: grab;
+    filter: drop-shadow(0px 15px 25px rgba(0, 0, 0, 0.25));
+    will-change: transform;
+    transition: transform 0.2s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.space-floating-icon:active {
+    cursor: grabbing;
+}
+
+/* ========================================================
+   Positions: L-fō9 f l-Lsar w L-fō9 f l-Līmen
+   ======================================================== */
+
+/* 1. Icon L-Lsar (GIF by O2.gif): L-fō9 3la l-yīsar w mayla shwiya */
+.space-icon-1 {
+    top: 5%;
+    left: -20px;
+    transform: rotate(-12deg);
+    animation: spaceFloatLeft 4s ease-in-out infinite alternate;
+}
+
+/* 2. Icon L-Līmen (ChatGPT Image...): L-fō9 3la l-yīmen w mayla f l-itijah l-m3aks */
+.space-icon-2 {
+    top: 8%;
+    right: -20px;
+    transform: rotate(15deg);
+    animation: spaceFloatRight 4.5s ease-in-out infinite alternate;
+}
+
+/* ========================================================
+   Floating Animations (Haraka dyal l-Faḍā' / Smooth Drift)
+   ======================================================== */
+
+@keyframes spaceFloatLeft {
+    0% {
+        transform: translateY(0px) rotate(-12deg);
+    }
+    100% {
+        transform: translateY(-18px) rotate(-5deg);
+    }
+}
+
+@keyframes spaceFloatRight {
+    0% {
+        transform: translateY(0px) rotate(15deg);
+    }
+    100% {
+        transform: translateY(-22px) rotate(22deg);
+    }
+}
+
+/* Mobile Responsive adjustment */
+@media (max-width: 768px) {
+    .space-floating-icon {
+        width: 80px; /* Sgharat f l-mobile bach ma-y-ghṭṭiwsh 3la l-k-taba */
+    }
+    .space-icon-1 {
+        top: 2%;
+        left: 0px;
+    }
+    .space-icon-2 {
+        top: 4%;
+        right: 0px;
+    }
+}
+
+/* Update dyal l-style dyal Space Icons */
+.space-floating-icon {
+    position: absolute;
+    width: 167px; /* Tamaño dyal l-robot */
+    height: auto;
+    z-index: 99;
+    
+    /* 1. Hayyed l-shadow l-m3affna */
+    filter: none !important;
+    box-shadow: none !important;
+    
+    /* 2. Blend Mode: Bach t-ḥayyed l-khalfīya l-bīḍa w y-bqa gha l-robot b-waḥdo */
+    mix-blend-mode: multiply;
+    
+    cursor: grab;
+    will-change: transform;
+}
+
+/* Position dyal Icon 1 (L-Robot f l-Lsar): T-kḥḥez l-lbrra b -40px bach ma-y-bānsh l-karré */
+.space-icon-1 {
+    top: 2%;
+    left: -75px; /* Tkḥḥaz l-l-lsar bach y-jī mlaṣe9 m3a l-ḥā'iṭ dyal l-card */
+    transform: rotate(-10deg);
+}
+
+/* Position dyal Icon 2 (f l-Līmen) */
+.space-icon-2 {
+    top: 5%;
+    right: -75px;
+    transform: rotate(12deg);
+}
